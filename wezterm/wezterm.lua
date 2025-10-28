@@ -76,31 +76,44 @@ wezterm.on("update-status", function(window)
 	}))
 end)
 
-local function go_to_remote(window, pane)
-	local cwd = pane:get_current_working_dir().path
-	local info = pane:get_foreground_process_info()
-	wezterm.log_info(cwd)
-	-- local success, out, _ = wezterm.run_child_process({
-	-- 	"cmd",
-	-- 	"cd " .. wezterm.shell.quote_arg(cwd) .. "&& git remote get-url origin",
-	-- })
-	-- if success then
-	-- 	wezterm.log_info("Opening URL: ", out)
-	-- 	-- local url = out:match("^%s*(.-)%s*$")
-	-- 	-- -- Convert git@ to https if needed
-	-- 	-- url = url:gsub("git@([^:]+):", "https://%1/")
-	-- 	wezterm.open_with(out)
-	-- else
-	-- 	wezterm.open_with("https://google.com")
-	-- end
-	return nil
-end
-
 config.keys = {
 	{
 		key = "x",
 		mods = "LEADER",
-		action = wezterm.action_callback(go_to_remote),
+		-- action = wezterm.action_callback(go_to_remote),
+		action = wezterm.action_callback(function(window, pane)
+			-- local cwd = tab:get_current_working_dir()
+			local cwd = pane:get_current_working_dir().file_path
+			if not cwd then
+				window:toast_notification("Error", "Couuld not get CWD for pane", nil, 3000)
+				return
+			end
+			wezterm.log_info(string.sub(cwd, 2))
+			local actual_path = string.sub(cwd, 2)
+			local cmd = {
+				"git",
+				"-C",
+				actual_path,
+				"config",
+				"--get",
+				"remote.origin.url",
+			}
+
+			local success, stdout, stderr = wezterm.run_child_process(cmd)
+
+			if not success then
+				window:toast_notification("Error", "Could not get git remote url", nil, 3000)
+				return
+			end
+
+			local url = stdout:match("^%s*(.-)%s*$")
+			if not url or url == "" then
+				window:toast_notification("Error", "No git origin found", nil, 3000)
+				return
+			end
+
+			wezterm.open_with(url)
+		end),
 	},
 }
 
