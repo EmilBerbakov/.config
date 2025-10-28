@@ -32,13 +32,6 @@ wezterm.add_to_config_reload_watch_list(path)
 -- config.color_scheme = theme_switch(wezterm.gui.get_appearance())
 -- local color_theme = wezterm.color.get_builtin_schemes()[theme_switch(wezterm.gui.get_appearance())]
 local color_theme = wezterm.color.get_builtin_schemes()[colorscheme]
-if os.getenv("GLAZEWM_CONFIG_PATH") == nil or os.getenv("GLAZEWM_CONFIG_PATH") == "" then
-	local mux = wezterm.mux
-	wezterm.on("gui-startup", function(cmd)
-		local _, _, window = mux.spawn_window(cmd or {})
-		window:gui_window():maximize()
-	end)
-end
 config.tab_max_width = 100
 
 local os_type = wezterm.target_triple
@@ -141,6 +134,14 @@ if os_type == "x86_64-pc-windows-msvc" then
 		config.prefer_egl = true
 	end
 	config.default_prog = { "pwsh.exe", "-NoLogo" }
+
+	if os.getenv("GLAZEWM_CONFIG_PATH") == nil or os.getenv("GLAZEWM_CONFIG_PATH") == "" then
+		local mux = wezterm.mux
+		wezterm.on("gui-startup", function(cmd)
+			local _, _, window = mux.spawn_window(cmd or {})
+			window:gui_window():maximize()
+		end)
+	end
 end
 
 return config
