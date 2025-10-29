@@ -35,6 +35,7 @@ local color_theme = wezterm.color.get_builtin_schemes()[colorscheme]
 config.tab_max_width = 100
 
 local os_type = wezterm.target_triple
+local is_windows = os_type == "x86_64-pc-windows-msvc"
 
 local use_fancy_titlebar = false
 config.use_fancy_tab_bar = use_fancy_titlebar
@@ -80,16 +81,15 @@ config.keys = {
 	{
 		key = "x",
 		mods = "LEADER",
-		-- action = wezterm.action_callback(go_to_remote),
 		action = wezterm.action_callback(function(window, pane)
-			-- local cwd = tab:get_current_working_dir()
 			local cwd = pane:get_current_working_dir().file_path
 			if not cwd then
 				window:toast_notification("Error", "Couuld not get CWD for pane", nil, 3000)
 				return
 			end
-			wezterm.log_info(string.sub(cwd, 2))
-			local actual_path = string.sub(cwd, 2)
+			--NOTE: this doesn't work in wsl; looks like there's some wsl-specific stuff for WezTerm that I need to look into to make this work
+			local actual_path = is_windows and string.sub(cwd, 2) or cwd
+			wezterm.log_info(actual_path)
 			local cmd = {
 				"git",
 				"-C",
@@ -99,7 +99,7 @@ config.keys = {
 				"remote.origin.url",
 			}
 
-			local success, stdout, stderr = wezterm.run_child_process(cmd)
+			local success, stdout, _ = wezterm.run_child_process(cmd)
 
 			if not success then
 				window:toast_notification("Error", "Could not get git remote url", nil, 3000)
@@ -132,7 +132,7 @@ for i = 1, 9 do
 	-- })
 end
 
-if os_type == "x86_64-pc-windows-msvc" then
+if is_windows then
 	local _, stdout, _ = wezterm.run_child_process({ "cmd.exe", "ver" })
 	local _, _, build, _ = stdout:match("Version ([0-9]+)%.([0-9]+)%.([0-9]+)%.([0-9]+)")
 	local is_windows_11 = tonumber(build) >= 22000
