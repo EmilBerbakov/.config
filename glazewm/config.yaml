@@ -157,6 +157,12 @@ window_rules:
       # Ignore Command Palette
       - window_title: { equals: 'Command Palette' }
         window_class: { equals: 'WinUIDesktopWin32WindowClass' }
+  - commands: ['move --workspace 1']
+    match:
+      - window_process: { regex: 'steam|Epic' }
+  - commands: ['move --workspace 3']
+    match:
+      - window_process: {regex: 'Discord'}
 
 binding_modes:
   # When enabled, the focused window can be resized via arrow keys or HJKL.
@@ -262,8 +268,13 @@ keybindings:
   # Terminal and Git Bash respectively.
   # - commands: ['shell-exec cmd']
   #   bindings: ['alt+enter']
+
+  # Open WezTerm
   - commands: ['shell-exec wezterm-gui.exe']
     bindings: ['alt+enter']
+  # Open a new web browser
+  - commands: ['shell-exec cmd /c start https://']
+    bindings: ['alt+b']
 
   # Focus the next/previous active workspace defined in `workspaces` config.
   - commands: ['focus --next-active-workspace']
