@@ -282,6 +282,9 @@ keybindings:
   # Open a new web browser
   - commands: ['shell-exec cmd /c start https://']
     bindings: ['alt+b']
+  # Open File Explorer
+  - commands: ['shell-exec explorer']
+    bindings: ['alt+f']
 
   # Focus the next/previous active workspace defined in `workspaces` config.
   - commands: ['focus --next-active-workspace']
