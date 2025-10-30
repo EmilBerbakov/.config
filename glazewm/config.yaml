@@ -157,9 +157,16 @@ window_rules:
       # Ignore Command Palette
       - window_title: { equals: 'Command Palette' }
         window_class: { equals: 'WinUIDesktopWin32WindowClass' }
+
+      # Ignore VPN popup
+      - window_process: { equals: 'PanGPA' }
+  
+  # move Steam and Epic launchers to main workspace 
   - commands: ['move --workspace 1']
     match:
       - window_process: { regex: 'steam|Epic' }
+
+  # move Discord to Workspace 3
   - commands: ['move --workspace 3']
     match:
       - window_process: {regex: 'Discord'}
