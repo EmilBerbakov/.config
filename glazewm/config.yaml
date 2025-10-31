@@ -4,10 +4,15 @@ general:
   # Example: The below command launches Zebar.
   # startup_commands: ['shell-exec zebar']
 
+  # Startup Yasb
+  startup_commands: ['shell-exec yasb']
+
   # Commands to run just before the WM is shutdown.
   # Example: The below command kills Zebar.
   # shutdown_commands: ['shell-exec taskkill /IM zebar.exe /F']
 
+  #Kill Yasb when Glaze is closed
+  shutdown_commands: ['shell-exec taskkill /IM yasb.exe /F']
   # Commands to run after the WM config is reloaded.
   config_reload_commands: []
 
@@ -274,7 +279,7 @@ keybindings:
   # `shell-exec %ProgramFiles%/Git/git-bash.exe` to start Windows
   # Terminal and Git Bash respectively.
   # - commands: ['shell-exec cmd']
-  #   bindings: ['alt+enter']
+  #   bindings: [alt+enter']
 
   # Open WezTerm
   - commands: ['shell-exec wezterm-gui.exe']
@@ -284,7 +289,7 @@ keybindings:
     bindings: ['alt+b']
   # Open File Explorer
   - commands: ['shell-exec explorer']
-    bindings: ['alt+f']
+    bindings: ['alt+e']
 
   # Focus the next/previous active workspace defined in `workspaces` config.
   - commands: ['focus --next-active-workspace']
