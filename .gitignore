@@ -1,2 +1,3 @@
 wezterm/wezterm_colorscheme
 git/*
+./*/*.log
