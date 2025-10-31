@@ -21,6 +21,8 @@ file:close()
 config.color_scheme = colorscheme
 wezterm.add_to_config_reload_watch_list(path)
 
+wezterm.font("JetBrainsMono Nerd Font")
+
 -- local function theme_switch(appearance)
 -- 	if appearance:find("Dark") then
 -- 		return "Catppuccin Mocha"
@@ -114,6 +116,21 @@ config.keys = {
 
 			wezterm.open_with(url)
 		end),
+	},
+	{
+		key = "w",
+		mods = "LEADER",
+		action = wezterm.action.CloseCurrentTab({ confirm = false }),
+	},
+	{
+		key = "t",
+		mods = "LEADER",
+		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
+	},
+	{
+		key = "v",
+		mods = "LEADER",
+		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 	},
 }
 
