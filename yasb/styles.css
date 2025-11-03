@@ -25,7 +25,7 @@ For more information about configuration options, please visit the Wiki https://
 
 .yasb-bar {
 	background-color: var(--bg-color1);
-	border-radius: 8px;
+	/* border-radius: 8px; */
 	border: 1px solid var(--bg-color2);
 }
 

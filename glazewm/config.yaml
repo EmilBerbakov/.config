@@ -4,15 +4,18 @@ general:
   # Example: The below command launches Zebar.
   # startup_commands: ['shell-exec zebar']
 
-  # Startup Yasb
-  startup_commands: ['shell-exec yasb']
 
   # Commands to run just before the WM is shutdown.
   # Example: The below command kills Zebar.
   # shutdown_commands: ['shell-exec taskkill /IM zebar.exe /F']
 
+  # Startup Yasb
+  startup_commands: ['shell-exec yasb']
+
+
   #Kill Yasb when Glaze is closed
   shutdown_commands: ['shell-exec taskkill /IM yasb.exe /F']
+
   # Commands to run after the WM config is reloaded.
   config_reload_commands: []
 
@@ -49,14 +52,14 @@ gaps:
   scale_with_dpi: true
 
   # Gap between adjacent windows.
-  inner_gap: '10px'
+  inner_gap: '5px'
 
   # Gap between windows and the screen edge.
   outer_gap:
-    top: '10px'
-    right: '10px'
-    bottom: '10px'
-    left: '10px'
+    top: '0px'
+    right: '5px'
+    bottom: '0px'
+    left: '5px'
 
 window_effects:
   # Visual effects to apply to the focused window.
@@ -75,7 +78,7 @@ window_effects:
     # Change the corner style of the window's frame.
     # ** Exclusive to Windows 11 due to API limitations.
     corner_style:
-      enabled: false
+      enabled: true
       # Allowed values: 'square', 'rounded', 'small_rounded'.
       style: 'square'
 
@@ -94,7 +97,7 @@ window_effects:
     hide_title_bar:
       enabled: false
     corner_style:
-      enabled: false
+      enabled: true
       style: 'square'
     transparency:
       enabled: false

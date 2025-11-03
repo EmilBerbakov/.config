@@ -183,21 +183,22 @@ widgets:
       offline_label: "GlazeWM Offline"
       hide_empty_workspaces: true
       hide_if_offline: true
-      enable_scroll_switching: true
-      btn_shadow:
-        enabled: true
-        color: "black"
-        radius: 3
-        offset: [ 1, 1 ]
-      app_icons: 
-        enabled_populated: false
-        enabled_active: false
-        size: 16
-        max_icons: 0
-        hide_label: false
-        hide_duplicates: false
-        hide_floating: false
-      animation: false
+      hide_empty_workspaces: true
+      # enable_scroll_switching: true
+      # btn_shadow:
+      #   enabled: true
+      #   color: "black"
+      #   radius: 3
+      #   offset: [ 1, 1 ]
+      # app_icons: 
+      #   enabled_populated: false
+      #   enabled_active: false
+      #   size: 16
+      #   max_icons: 0
+      #   hide_label: false
+      #   hide_duplicates: false
+      #   hide_floating: false
+      # animation: false
       active_populated_label: "\uebb4 {name}"
       active_empty_label: "\uebb5 {name}"
 
@@ -279,22 +280,22 @@ widgets:
         on_left: "toggle_mute"
         on_middle: "toggle_label"
         on_right: "exec cmd.exe /c start ms-settings:sound"
-  power_menu:
-    type: "yasb.power_menu.PowerMenuWidget"
-    options:
-      label: "\uf011"
-      uptime: True
-      blur: False
-      blur_background: True
-      animation_duration: 200
-      button_row: 5
-      buttons:
-        shutdown: ["\uf011", "Shut Down"]
-        restart: ["\uead2", "Restart"]
-        signout: ["\udb80\udf43", "Sign out"]
-        hibernate: ["\uf28e", "Hibernate"]
-        sleep: ["\u23fe", "Sleep"]
-        cancel: ["", "Cancel"]
+  # power_menu:
+  #   type: "yasb.power_menu.PowerMenuWidget"
+  #   options:
+  #     label: "\uf011"
+  #     uptime: True
+  #     blur: False
+  #     blur_background: True
+  #     animation_duration: 200
+  #     button_row: 5
+  #     buttons:
+  #       shutdown: ["\uf011", "Shut Down"]
+  #       restart: ["\uead2", "Restart"]
+  #       signout: ["\udb80\udf43", "Sign out"]
+  #       hibernate: ["\uf28e", "Hibernate"]
+  #       sleep: ["\u23fe", "Sleep"]
+  #       cancel: ["", "Cancel"]
   notifications:
     type: "yasb.notifications.NotificationsWidget"
     options:
