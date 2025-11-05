@@ -171,6 +171,10 @@ window_rules:
 
       # Ignore VPN popup
       - window_process: { equals: 'PanGPA' }
+
+      # Ignore SSMS popup when quitting without saving queries
+      - window_process: {equals: 'SSMS'}
+        window_title: { equals: 'Microsoft SQL Server Management Studio' }
   
   # move Steam and Epic launchers to main workspace 
   - commands: ['move --workspace 1']
