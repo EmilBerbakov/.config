@@ -176,10 +176,14 @@ window_rules:
       - window_process: {equals: 'SSMS'}
         window_title: { equals: 'Microsoft SQL Server Management Studio' }
   
-  # move Steam and Epic launchers to main workspace 
   - commands: ['move --workspace 1']
+  # move Steam and Epic launchers to main workspace 
     match:
       - window_process: { regex: 'steam|Epic' }
+  # move Unreal Engine games to main workspace
+      - window_class: { equals: 'UnrealWindow' }
+  # same but for Unity games
+      - window_class: { equals: 'UnityWndClass' }
 
   # move Discord to Workspace 3
   - commands: ['move --workspace 3']
