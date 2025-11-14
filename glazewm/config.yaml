@@ -185,11 +185,6 @@ window_rules:
   # same but for Unity games
       - window_class: { equals: 'UnityWndClass' }
 
-  # move Discord to Workspace 3
-  - commands: ['move --workspace 3']
-    match:
-      - window_process: {regex: 'Discord'}
-
 binding_modes:
   # When enabled, the focused window can be resized via arrow keys or HJKL.
   - name: 'resize'
@@ -205,6 +200,7 @@ binding_modes:
       # Press enter/escape to return to default keybindings.
       - commands: ['wm-disable-binding-mode --name resize']
         bindings: ['escape', 'enter']
+  - name: 'pause'
 
 keybindings:
   # Shift focus in a given direction.

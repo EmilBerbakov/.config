@@ -36,16 +36,15 @@ bars:
       right: 4
     widgets:
       left:
-      - "active_window"
+      # - "active_window"
       - "glazewm_workspaces"
       - "taskbar"
       center:
       - "clock"
       right:
-      - "glazewm_binding_mode"
+      # - "glazewm_binding_mode"
       - "glazewm_tiling_direction"
       - "media"
-      - "weather"
       - "microphone"
       - "volume"
       - "notifications"
@@ -55,28 +54,28 @@ widgets:
     type: "yasb.systray.SystrayWidget"
     options:
       class_name: "systray"
-      label_collapsed: "▼"
-      label_expanded: "▶"
+      label_collapsed: "\uf0d7"
+      label_expanded: "\uf0da"
       label_position: "left" # Can be "left" or "right"
-      icon_size: 16 # Can be any integer between 8 and 64
+      icon_size: 18 # Can be any integer between 8 and 64
       pin_click_modifier: "alt" # Can be "ctrl", "alt" or "shift"
       show_unpinned: true
       show_unpinned_button: true
       show_battery: false
       show_volume: false
       show_network: false
-      btn_shadow:
-        enabled: true
-        color: "black"
-        radius: 3
-        offset: [ 1, 1 ]
+      # btn_shadow:
+      #   enabled: true
+      #   color: "black"
+      #   radius: 3
+      #   offset: [ 1, 1 ]
   media:
     type: "yasb.media.MediaWidget"
     options:
       label: "{title}"
       label_alt: "{artist} - {title}"
       max_field_size:
-        label: 16
+        label: 18
         label_alt: 24
       show_thumbnail: true
       controls_only: false
@@ -119,17 +118,17 @@ widgets:
         on_left: "toggle_media_menu"
         on_middle: "do_nothing"
         on_right: "toggle_label"
-  active_window:
-    type: "yasb.active_window.ActiveWindowWidget"
-    options:
-      label: "{win[title]}"
-      label_alt: "[class_name='{win[class_name]}' exe='{win[process][name]}' hwnd={win[hwnd]}]"
-      label_no_window: ""
-      label_icon: true
-      label_icon_size: 14
-      max_length: 60
-      max_length_ellipsis: "..."
-      monitor_exclusive: true
+  # active_window:
+  #   type: "yasb.active_window.ActiveWindowWidget"
+  #   options:
+  #     label: "{win[title]}"
+  #     label_alt: "[class_name='{win[class_name]}' exe='{win[process][name]}' hwnd={win[hwnd]}]"
+  #     label_no_window: ""
+  #     label_icon: true
+  #     label_icon_size: 14
+  #     max_length: 60
+  #     max_length_ellipsis: "..."
+  #     monitor_exclusive: true
   taskbar:
     type: "yasb.taskbar.TaskbarWidget"
     options:
@@ -203,79 +202,12 @@ widgets:
   glazewm_workspaces:
     type: "glazewm.workspaces.GlazewmWorkspacesWidget"
     options:
-      offline_label: "GlazeWM Offline"
       hide_empty_workspaces: true
       hide_if_offline: true
-      hide_empty_workspaces: true
-      # enable_scroll_switching: true
-      # btn_shadow:
-      #   enabled: true
-      #   color: "black"
-      #   radius: 3
-      #   offset: [ 1, 1 ]
-      # app_icons: 
-      #   enabled_populated: false
-      #   enabled_active: false
-      #   size: 16
-      #   max_icons: 0
-      #   hide_label: false
-      #   hide_duplicates: false
-      #   hide_floating: false
-      # animation: false
       active_populated_label: "\uebb4 {name}"
       active_empty_label: "\uebb5 {name}"
 
-    # By default workspace names are fetched from GlazeWM and "display_name" option takes priority over "name".
-    # However, you can customize populated and empty labels here using {name} and {display_name} placeholders if needed.
-    # {name} will be replaced with workspace name (index) from GlazeWM.
-    # {display_name} will be replaced with workspace display_name from GlazeWM.
 
-    # populated_label: "{name} {display_name} \uebb4"
-    # empty_label: "{name} {display_name} \uebb5"
-  weather:
-    type: "yasb.weather.WeatherWidget"
-    options:
-      label: "<span>{icon}</span> {temp}"
-      label_alt: "{location}: Min {min_temp}, Max {max_temp}, Humidity {humidity}"
-      api_key: env
-      update_interval: 600
-      hide_decimal: true
-      location: env
-      callbacks:
-        on_left: "toggle_card"
-        on_middle: "do_nothing"
-        on_right: "toggle_label"
-      icons:
-        sunnyDay: "\ue30d"
-        clearNight: "\ue32b"
-        cloudyDay: "\ue312"
-        cloudyNight: "\ue311"
-        rainyDay: "\ue308"
-        rainyNight: "\ue333"
-        snowyIcyDay: "\ue30a"
-        snowyIcyNight: "\ue335"
-        blizzardDay: "\udb83\udf36"
-        blizzardNight: "\udb83\udf36"
-        foggyDay: "\ue303"
-        foggyNight: "\ue346"
-        thunderstormDay: "\ue30f"
-        thunderstormNight: "\ue338"
-        default: "\uebaa"
-      weather_card:
-        blur: false
-        round_corners: false
-        alignment: "right"
-        direction: "down"
-        icon_size: 64
-        show_hourly_forecast: true
-        time_format: "24h"
-        hourly_point_spacing: 76
-        hourly_icon_size: 32
-        icon_smoothing: true
-        temp_line_width: 2
-        current_line_color: "#8EAEE8"
-        current_line_width: 1
-        current_line_style: "dot"
   volume:
     type: "yasb.volume.VolumeWidget"
     options:
@@ -290,6 +222,7 @@ widgets:
         - "\uf028"
       callbacks:
         on_left: "toggle_mute"
+        on_middle: "toggle_volume_menu"
         on_right: "exec cmd.exe /c start ms-settings:sound"
   microphone:
     type: "yasb.microphone.MicrophoneWidget"
@@ -303,22 +236,6 @@ widgets:
         on_left: "toggle_mute"
         on_middle: "toggle_label"
         on_right: "exec cmd.exe /c start ms-settings:sound"
-  # power_menu:
-  #   type: "yasb.power_menu.PowerMenuWidget"
-  #   options:
-  #     label: "\uf011"
-  #     uptime: True
-  #     blur: False
-  #     blur_background: True
-  #     animation_duration: 200
-  #     button_row: 5
-  #     buttons:
-  #       shutdown: ["\uf011", "Shut Down"]
-  #       restart: ["\uead2", "Restart"]
-  #       signout: ["\udb80\udf43", "Sign out"]
-  #       hibernate: ["\uf28e", "Hibernate"]
-  #       sleep: ["\u23fe", "Sleep"]
-  #       cancel: ["", "Cancel"]
   notifications:
     type: "yasb.notifications.NotificationsWidget"
     options:
