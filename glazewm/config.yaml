@@ -1,23 +1,12 @@
 general:
-  # Commands to run when the WM has started. This is useful for running a
-  # script or launching another application.
-  # Example: The below command launches Zebar.
-  # startup_commands: ['shell-exec zebar']
-
-
-  # Commands to run just before the WM is shutdown.
-  # Example: The below command kills Zebar.
-  # shutdown_commands: ['shell-exec taskkill /IM zebar.exe /F']
-
   # Startup Yasb
   startup_commands: ['shell-exec yasb']
-
-
   #Kill Yasb when Glaze is closed
   shutdown_commands: ['shell-exec taskkill /IM yasb.exe /F']
 
   # Commands to run after the WM config is reloaded.
-  config_reload_commands: []
+  config_reload_commands:
+    - 'wm-redraw'
 
   # Whether to automatically focus windows underneath the cursor.
   focus_follows_cursor: false
