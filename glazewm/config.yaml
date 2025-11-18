@@ -160,10 +160,6 @@ window_rules:
 
       # Ignore VPN popup
       - window_process: { equals: 'PanGPA' }
-
-      # Ignore SSMS popup when quitting without saving queries
-      - window_process: {equals: 'SSMS'}
-        window_title: { equals: 'Microsoft SQL Server Management Studio' }
   
   - commands: ['move --workspace 1']
   # move Steam and Epic launchers to main workspace 
@@ -188,8 +184,11 @@ binding_modes:
         bindings: ['j', 'down']
       # Press enter/escape to return to default keybindings.
       - commands: ['wm-disable-binding-mode --name resize']
-        bindings: ['escape', 'enter']
+        bindings: ['escape', 'enter', 'alt+r']
   - name: 'pause'
+    keybindings:
+      - commands: ['wm-disable-binding-mode --name pause']
+        bindings: ['alt+shift+p']
 
 keybindings:
   # Shift focus in a given direction.
@@ -230,7 +229,7 @@ keybindings:
 
   # Disables window management and all other keybindings until alt+shift+p
   # is pressed again.
-  - commands: ['wm-toggle-pause']
+  - commands: ['wm-enable-binding-mode --name pause']
     bindings: ['alt+shift+p']
 
   # Change tiling direction. This determines where new tiling windows will

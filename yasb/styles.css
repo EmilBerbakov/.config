@@ -354,9 +354,13 @@ For more information about configuration options, please visit the Wiki https://
 	margin-top: -20px;
 }
 
+.glazewm-binding-mode .icon {
+	color: var(--blue);
+}
+
 .glazewm-tiling-direction .btn {
 	font-size: 18px;
-	color: var(--text1);
+	color: var(--blue);
 	border: none;
 }
 
