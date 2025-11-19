@@ -175,6 +175,7 @@ widgets:
         label_alt: '<span>{icon}</span> {binding_mode}'
         icons:
           resize: "\uf047"
+          pause: "\uf28c"
         binding_modes_to_cycle_through: [
           "none", # none handles if no binding mode is active
           "resize",
