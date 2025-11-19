@@ -23,6 +23,19 @@ wezterm.add_to_config_reload_watch_list(path)
 
 config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
 
+-- wezterm.on("window-config-reloaded", function(window, _)
+-- 	local appearance = window:get_appearance()
+--
+-- 	local file = io.open(path, "w")
+-- 	assert(file)
+-- 	if appearance:find("Dark") then
+-- 		file:write("Catppuccin Mocha")
+-- 	else
+-- 		file:write("Catppuccin Latte")
+-- 	end
+-- 	file:close()
+-- end)
+
 -- local function theme_switch(appearance)
 -- 	if appearance:find("Dark") then
 -- 		return "Catppuccin Mocha"

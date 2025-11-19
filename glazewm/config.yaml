@@ -273,12 +273,6 @@ keybindings:
   - commands: ['wm-redraw']
     bindings: ['alt+shift+w']
 
-  # Launch CMD terminal. Alternatively, use `shell-exec wt` or
-  # `shell-exec %ProgramFiles%/Git/git-bash.exe` to start Windows
-  # Terminal and Git Bash respectively.
-  # - commands: ['shell-exec cmd']
-  #   bindings: [alt+enter']
-
   # Open WezTerm
   - commands: ['shell-exec wezterm-gui.exe']
     bindings: ['alt+enter']
@@ -288,6 +282,9 @@ keybindings:
   # Open File Explorer
   - commands: ['shell-exec explorer']
     bindings: ['alt+e']
+  # Open VS Code
+  - commands: ['shell-exec --hide-window code']
+    bindings: ['alt+c']
 
   # Focus the next/previous active workspace defined in `workspaces` config.
   - commands: ['focus --next-active-workspace']
