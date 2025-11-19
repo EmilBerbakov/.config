@@ -379,15 +379,15 @@ For more information about configuration options, please visit the Wiki https://
 }
 
 .glazewm-workspaces .ws-btn.active_populated {
-	background-color: var(--blue);
+	background-color: var(--text4);
 }
 
 .glazewm-workspaces .ws-btn.focused_populated {
-	background-color: var(--red);
+	background-color: var(--blue);
 }
 
 .glazewm-workspaces .ws-btn.focused_populated .label {
-	color: var(--bg-color1);
+	color: var(--text1);
 }
 
 .glazewm-workspaces .ws-btn.active_empty {
@@ -399,12 +399,12 @@ For more information about configuration options, please visit the Wiki https://
 }
 
 .glazewm-workspaces .ws-btn.focused_empty {
-	color: var(--bg-color1);
-	background-color: var(--yellow);
+	color: var(--text1);
+	background-color: var(--blue);
 }
 
 .glazewm-workspaces .ws-btn.focused_empty .label {
-	color: var(--bg-color1);
+	color: var(--text1);
 }
 
 .glazewm-workspaces .ws-btn.empty {
