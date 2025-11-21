@@ -466,6 +466,10 @@ For more information about configuration options, please visit the Wiki https://
 	padding: 0 4px;
 }
 
+.taskbar-widget .app-container .app-title {
+	padding-left: 4px;
+}
+
 .taskbar-widget .app-container.foreground {
 	background-color: var(--blue);
 }
