@@ -38,7 +38,7 @@ bars:
       left:
       - "glazewm_workspaces"
       - "taskbar"
-      - "active_window"
+      # - "active_window"
       center:
       - "clock"
       right:
@@ -146,14 +146,13 @@ widgets:
         padding: 8
         margin: 8
       title_label:
-        enabled: false
-        show: "always"
+        enabled: true
+        show: "focused"
         min_length: 10
-        max_length: 30
-      ignore_apps:
-        processes: []
-        titles: []
-        classes: []
+        max_length: 60
+      hide_empty: true
+      callbacks:
+        on_right: "context_menu"
   clock:
     type: "yasb.clock.ClockWidget"
     options:
