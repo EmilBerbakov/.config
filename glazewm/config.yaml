@@ -277,10 +277,13 @@ keybindings:
   - commands: ['shell-exec wezterm-gui.exe']
     bindings: ['alt+enter']
   # Open a new web browser
-  - commands: ['shell-exec cmd /c start https://']
+  - commands: ['shell-exec --hide-window cmd /c start https://']
     bindings: ['alt+b']
+  # Open YouTube
+  - commands: ['shell-exec --hide-window cmd /c start https://youtube.com']
+    bindings: ['alt+y']
   # Open File Explorer
-  - commands: ['shell-exec explorer']
+  - commands: ['shell-exec --hide-window explorer']
     bindings: ['alt+e']
   # Open VS Code
   - commands: ['shell-exec --hide-window code']
