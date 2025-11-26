@@ -59,16 +59,11 @@ widgets:
       label_position: "left" # Can be "left" or "right"
       icon_size: 18 # Can be any integer between 8 and 64
       pin_click_modifier: "alt" # Can be "ctrl", "alt" or "shift"
-      show_unpinned: true
+      show_unpinned: false
       show_unpinned_button: true
       show_battery: true
       show_volume: false
       show_network: true
-      # btn_shadow:
-      #   enabled: true
-      #   color: "black"
-      #   radius: 3
-      #   offset: [ 1, 1 ]
   media:
     type: "yasb.media.MediaWidget"
     options:
@@ -195,11 +190,11 @@ widgets:
       active_populated_label: "\uebb4 {name}"
       active_empty_label: "\uebb5 {name}"
       # Want to make this work, but the styling in terms of border-radius and font-size seems to get messed up; probably because .label and .app-icons
-      # app_icons:
-      #   enabled_active: false
-      #   enabled_populated: true
-      #   size: 18
-      #   hide_duplicates: true
+      app_icons:
+        enabled_active: false
+        enabled_populated: true
+        size: 10
+        hide_duplicates: true
 
 
   volume:
