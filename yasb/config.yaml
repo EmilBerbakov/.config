@@ -38,6 +38,7 @@ bars:
       left:
       - "glazewm_workspaces"
       - "taskbar"
+      - "quick_launch"
       # - "active_window"
       center:
       - "clock"
@@ -49,7 +50,148 @@ bars:
       - "volume"
       - "notifications"
       - "systray"
+      - "power_menu"
 widgets:
+  power_menu:
+    type: "yasb.power_menu.PowerMenuWidget"
+    options:
+      keybindings:
+        - keys: "alt+x"
+          action: "toggle_power_menu"
+      label: "\uf011"
+      uptime: true
+      blur: false
+      blur_background: true
+      animation_duration: 200 # Milliseconds
+      button_row: 5 # Number of buttons in a row, min 1 max 5
+      buttons:
+        lock: ["\uea75", "Lock"]
+        sleep: ["\u23fe","Sleep"]
+        signout: ["\udb80\udf43", "Sign out"]
+        shutdown: ["\uf011", "Shut Down"]
+        restart: ["\uead2", "Restart"]
+        hibernate: ["\uf28e", "Hibernate"]
+        cancel: ["\udb81\udf3a", "Cancel"]
+      label_shadow:
+        enabled: false
+        color: "black"
+        radius: 3
+        offset: [ 1, 1 ]
+  quick_launch:
+    type: "yasb.quick_launch.QuickLaunchWidget"
+    options:
+        label: ""
+        search_placeholder: "Search applications..."
+        max_results: 50
+        show_icons: true
+        icon_size: 32
+        providers:
+            apps:
+                enabled: true
+                prefix: "*"
+                priority: 0
+                show_recent: true
+                max_recent: 5
+                show_description: true
+            calculator:
+                enabled: true
+                prefix: "="
+                priority: 1
+            clipboard_history:
+                enabled: true
+                prefix: "cb"
+                priority: 2
+                max_items: 30
+            currency:
+                enabled: true
+                prefix: "$"
+                priority: 3
+            bookmarks:
+                enabled: true
+                prefix: "*"
+                priority: 4
+                browser: "all"
+                profile: "Default"
+            web_search:
+                enabled: true
+                prefix: "?"
+                priority: 5
+                engine: "google"
+            system_commands:
+                enabled: true
+                prefix: ">"
+                priority: 6
+            settings:
+                enabled: true
+                prefix: "@"
+                priority: 7
+            kill_process:
+                enabled: true
+                prefix: "!"
+                priority: 8
+            port_viewer:
+                enabled: true
+                prefix: "pv"
+                priority: 9
+                tcp_listening_only: true
+                include_established: false
+            file_search:
+                enabled: true
+                prefix: "/"
+                priority: 10
+                backend: "auto"
+                show_path: true
+            unit_converter:
+                enabled: true
+                prefix: "~"
+                priority: 11
+            emoji:
+                enabled: true
+                prefix: ":"
+                priority: 12
+            color:
+                enabled: true
+                prefix: "c:"
+                priority: 13
+            world_clock:
+                enabled: true
+                prefix: "tz"
+                priority: 14
+            snippets:
+                enabled: true
+                prefix: ";"
+                priority: 15
+                type_delay: 200
+            hacker_news:
+                enabled: true
+                prefix: "hn"
+                priority: 16
+                cache_ttl: 300
+                max_items: 30
+            dev_tools:
+                enabled: true
+                prefix: "dev"
+                priority: 17
+            ip_info:
+                enabled: true
+                prefix: "ip"
+                priority: 18
+            vscode:
+                enabled: true
+                prefix: "vsc"
+                priority: 19
+        popup:
+            width: 720
+            height: 480
+            screen: "focus"
+            blur: true
+            round_corners: true
+            round_corners_type: "normal"
+            border_color: "system"
+            dark_mode: true
+        keybindings:
+            - keys: "alt+space"
+              action: "toggle_quick_launch"
   systray:
     type: "yasb.systray.SystrayWidget"
     options:

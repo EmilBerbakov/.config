@@ -235,7 +235,7 @@ keybindings:
   # Change tiling direction. This determines where new tiling windows will
   # be inserted.
   - commands: ['toggle-tiling-direction']
-    bindings: ['alt+v']
+    bindings: ['alt+shift+v']
 
   # Change focus from tiling windows -> floating -> fullscreen.
   - commands: ['wm-cycle-focus']
@@ -259,7 +259,7 @@ keybindings:
 
   # Close focused window.
   - commands: ['close']
-    bindings: ['alt+shift+q']
+    bindings: ['alt+q']
 
   # Kill GlazeWM process safely.
   - commands: ['wm-exit']
@@ -274,7 +274,8 @@ keybindings:
     bindings: ['alt+shift+w']
 
   # Open WezTerm
-  - commands: ['shell-exec wezterm-gui.exe']
+  # - commands: ['shell-exec wezterm-gui.exe']
+  - commands: ['shell-exec wt']
     bindings: ['alt+enter']
   # Open a new web browser
   - commands: ['shell-exec --hide-window cmd /c start https://']
@@ -288,6 +289,9 @@ keybindings:
   # Open VS Code
   - commands: ['shell-exec --hide-window code']
     bindings: ['alt+c']
+  # Open Visual Studio
+  - commands: ['shell-exec --hide-window cmd /c start devenv']
+    bindings: ['alt+v']
 
   # Focus the next/previous active workspace defined in `workspaces` config.
   - commands: ['focus --next-active-workspace']
