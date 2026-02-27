@@ -161,7 +161,7 @@ window_rules:
       # Ignore VPN popup
       - window_process: { equals: 'PanGPA' }
   
-  - commands: ['move --workspace 1']
+  - commands: ['move --workspace 1','wm-enable-binding-mode --name pause']
   # move Steam and Epic launchers to main workspace 
     match:
       - window_process: { regex: 'steam|Epic' }
@@ -235,11 +235,11 @@ keybindings:
   # Change tiling direction. This determines where new tiling windows will
   # be inserted.
   - commands: ['toggle-tiling-direction']
-    bindings: ['alt+v']
+    bindings: ['alt+shift+v']
 
   # Change focus from tiling windows -> floating -> fullscreen.
   - commands: ['wm-cycle-focus']
-    bindings: ['alt+c']
+    bindings: ['alt+/']
 
   # Change the focused window to be floating.
   - commands: ['toggle-floating --centered']
@@ -259,7 +259,7 @@ keybindings:
 
   # Close focused window.
   - commands: ['close']
-    bindings: ['alt+shift+q']
+    bindings: ['alt+q']
 
   # Kill GlazeWM process safely.
   - commands: ['wm-exit']
