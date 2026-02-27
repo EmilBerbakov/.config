@@ -1,8 +1,8 @@
 general:
   # Startup Yasb
-  startup_commands: ['shell-exec yasb']
+  startup_commands: ['shell-exec yasb', 'shell-exec thide start']
   #Kill Yasb when Glaze is closed
-  shutdown_commands: ['shell-exec taskkill /IM yasb.exe /F']
+  shutdown_commands: ['shell-exec taskkill /IM yasb.exe /F', 'shell-exec thide stop']
 
   # Commands to run after the WM config is reloaded.
   config_reload_commands:
