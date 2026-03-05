@@ -326,13 +326,13 @@ keybindings:
   # Move the focused window's parent workspace to a monitor in a given
   # direction.
   - commands: ['move-workspace --direction left']
-    bindings: ['alt+shift+a']
+    bindings: ['ctrl+alt+shift+h', 'ctrl+alt+shift+left']
   - commands: ['move-workspace --direction right']
-    bindings: ['alt+shift+f']
+    bindings: ['ctrl+alt+shift+l', 'ctrl+alt+shift+right']
   - commands: ['move-workspace --direction up']
-    bindings: ['alt+shift+d']
+    bindings: ['ctrl+alt+shift+k', 'ctrl+alt+shift+up']
   - commands: ['move-workspace --direction down']
-    bindings: ['alt+shift+s']
+    bindings: ['ctrl+alt+shift+j', 'ctrl+alt+shift+down']
 
   # Move focused window to a workspace defined in `workspaces` config.
   - commands: ['move --workspace 1', 'focus --workspace 1']
