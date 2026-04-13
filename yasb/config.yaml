@@ -36,16 +36,16 @@ bars:
       right: 4
     widgets:
       left:
-      - "glazewm_workspaces"
       - "taskbar"
-      - "quick_launch"
+      # - "quick_launch"
       # - "active_window"
       center:
-      - "clock"
+      - "glazewm_workspaces"
       right:
+      - "media"
+      - "clock"
       - "glazewm_binding_mode"
       - "glazewm_tiling_direction"
-      - "media"
       - "microphone"
       - "volume"
       - "notifications"
@@ -60,10 +60,9 @@ widgets:
           action: "toggle_power_menu"
       label: "\uf011"
       uptime: true
-      blur: false
       blur_background: true
       animation_duration: 200 # Milliseconds
-      button_row: 5 # Number of buttons in a row, min 1 max 5
+      button_row: 3 # Number of buttons in a row, min 1 max 5
       buttons:
         lock: ["\uea75", "Lock"]
         sleep: ["\u23fe","Sleep"]
@@ -72,11 +71,8 @@ widgets:
         restart: ["\uead2", "Restart"]
         hibernate: ["\uf28e", "Hibernate"]
         cancel: ["\udb81\udf3a", "Cancel"]
-      label_shadow:
-        enabled: false
-        color: "black"
-        radius: 3
-        offset: [ 1, 1 ]
+      show_user: true
+      profile_image_size: 160
   quick_launch:
     type: "yasb.quick_launch.QuickLaunchWidget"
     options:
@@ -97,26 +93,26 @@ widgets:
                 enabled: true
                 prefix: "="
                 priority: 1
-            clipboard_history:
-                enabled: true
-                prefix: "cb"
-                priority: 2
-                max_items: 30
-            currency:
-                enabled: true
-                prefix: "$"
-                priority: 3
-            bookmarks:
-                enabled: true
-                prefix: "*"
-                priority: 4
-                browser: "all"
-                profile: "Default"
+            # clipboard_history:
+            #     enabled: true
+            #     prefix: "cb"
+            #     priority: 2
+            #     max_items: 30
+            # currency:
+            #     enabled: true
+            #     prefix: "$"
+            #     priority: 3
+            # bookmarks:
+            #     enabled: true
+            #     prefix: "*"
+            #     priority: 4
+            #     browser: "all"
+            #     profile: "Default"
             web_search:
                 enabled: true
                 prefix: "?"
                 priority: 5
-                engine: "google"
+                engine: "duckduckgo"
             system_commands:
                 enabled: true
                 prefix: ">"
@@ -137,37 +133,37 @@ widgets:
                 include_established: false
             file_search:
                 enabled: true
-                prefix: "/"
+                prefix: "~"
                 priority: 10
                 backend: "auto"
                 show_path: true
             unit_converter:
                 enabled: true
-                prefix: "~"
+                prefix: "u:"
                 priority: 11
-            emoji:
-                enabled: true
-                prefix: ":"
-                priority: 12
+            # emoji:
+            #     enabled: true
+            #     prefix: ":"
+            #     priority: 12
             color:
                 enabled: true
                 prefix: "c:"
                 priority: 13
-            world_clock:
-                enabled: true
-                prefix: "tz"
-                priority: 14
-            snippets:
-                enabled: true
-                prefix: ";"
-                priority: 15
-                type_delay: 200
-            hacker_news:
-                enabled: true
-                prefix: "hn"
-                priority: 16
-                cache_ttl: 300
-                max_items: 30
+            # world_clock:
+            #     enabled: true
+            #     prefix: "tz"
+            #     priority: 14
+            # snippets:
+            #     enabled: true
+            #     prefix: ";"
+            #     priority: 15
+            #     type_delay: 200
+            # hacker_news:
+            #     enabled: true
+            #     prefix: "hn"
+            #     priority: 16
+            #     cache_ttl: 300
+            #     max_items: 30
             dev_tools:
                 enabled: true
                 prefix: "dev"
@@ -176,36 +172,40 @@ widgets:
                 enabled: true
                 prefix: "ip"
                 priority: 18
-            vscode:
-                enabled: true
-                prefix: "vsc"
-                priority: 19
+            # vscode:
+            #     enabled: true
+            #     prefix: "vsc"
+            #     priority: 19
+            windows_terminal:
+              enabled: true
+              prefix: "wt"
         popup:
             width: 720
             height: 480
-            screen: "focus"
             blur: true
             round_corners: true
             round_corners_type: "normal"
             border_color: "system"
             dark_mode: true
-        keybindings:
-            - keys: "alt+space"
-              action: "toggle_quick_launch"
+        # keybindings:
+        #     - keys: "alt+space"
+        #       action: "toggle_quick_launch"
   systray:
     type: "yasb.systray.SystrayWidget"
     options:
       class_name: "systray"
-      label_collapsed: "\uf0d7"
-      label_expanded: "\uf0da"
+      label_expanded: "\uf0d7"
+      label_collapsed: "\uf0da"
       label_position: "left" # Can be "left" or "right"
       icon_size: 18 # Can be any integer between 8 and 64
       pin_click_modifier: "alt" # Can be "ctrl", "alt" or "shift"
       show_unpinned: false
+      show_in_popup: true
       show_unpinned_button: true
       show_battery: true
       show_volume: false
       show_network: true
+      use_hook: true
   media:
     type: "yasb.media.MediaWidget"
     options:
@@ -255,22 +255,22 @@ widgets:
         on_left: "toggle_media_menu"
         on_middle: "do_nothing"
         on_right: "toggle_label"
-  # active_window:
-  #   type: "yasb.active_window.ActiveWindowWidget"
-  #   options:
-  #     label: "{win[title]}"
-  #     label_alt: "[class_name='{win[class_name]}' exe='{win[process][name]}' hwnd={win[hwnd]}]"
-  #     label_no_window: ""
-  #     label_icon: false
-  #     label_icon_size: 14
-  #     max_length: 60
-  #     max_length_ellipsis: "..."
-  #     monitor_exclusive: true
+  active_window:
+    type: "yasb.active_window.ActiveWindowWidget"
+    options:
+      label: "{win[title]}"
+      label_alt: "[class_name='{win[class_name]}' exe='{win[process][name]}' hwnd={win[hwnd]}]"
+      label_no_window: ""
+      label_icon: false
+      label_icon_size: 14
+      max_length: 60
+      max_length_ellipsis: "..."
+      monitor_exclusive: true
   taskbar:
     type: "yasb.taskbar.TaskbarWidget"
     options:
       icon_size: 18
-      tooltip: false
+      tooltip: true
       show_only_visible: true
       strict_filtering: true
       monitor_exclusive: true
@@ -289,14 +289,28 @@ widgets:
   clock:
     type: "yasb.clock.ClockWidget"
     options:
-      label: "{%a, %d %b %I:%M %p}"
+      label: "<span>{icon}</span><span> </span>{%a, %d %b %I:%M %p}"
       label_alt: "{%A, %d %B %Y %H:%M}"
       timezones: []
+      icons:
+        clock_01 : "\udb85\udc3f"
+        clock_02 : "\udb85\udc40"
+        clock_03 : "\udb85\udc41"
+        clock_04 : "\udb85\udc42"
+        clock_05 : "\udb85\udc43"
+        clock_06 : "\udb85\udc44"
+        clock_07 : "\udb85\udc45"
+        clock_08 : "\udb85\udc46"
+        clock_09 : "\udb85\udc47"
+        clock_10 : "\udb85\udc48"
+        clock_11 : "\udb85\udc49"
+        clock_12 : "\udb85\udc4a"
       calendar: 
         blur: false
         round_corners: false
         alignment: "center"
         direction: "down"
+        show_holidays: true
       callbacks:
         on_left: "toggle_calendar"
         on_right: "toggle_label"
@@ -329,8 +343,10 @@ widgets:
     options:
       hide_empty_workspaces: true
       hide_if_offline: true
-      active_populated_label: "\uebb4 {name}"
-      active_empty_label: "\uebb5 {name}"
+      active_populated_label: "\uebb4 {display_name}({name})"
+      active_empty_label: "\uebb5 {display_name}({name})"
+      empty_label: "{display_name}({name})"
+      populated_label: "{display_name}({name})"
       # Want to make this work, but the styling in terms of border-radius and font-size seems to get messed up; probably because .label and .app-icons
       app_icons:
         enabled_active: false

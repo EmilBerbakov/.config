@@ -292,6 +292,13 @@ For more information about configuration options, please visit the Wiki https://
 	color: var(--blue);
 }
 
+.clock-widget {
+	background-color: var(--blue);
+	border-radius: 8px;
+	padding: 4px;
+	margin: 4px 0;
+}
+
 .calendar {
 	background-color: var(--bg-color1);
 	border-radius: 8px;
@@ -394,7 +401,8 @@ For more information about configuration options, please visit the Wiki https://
 	color: var(--text1);
 }
 
-.glazewm-workspaces .ws-btn.active_empty {
+.glazewm-workspaces .ws-btn.active_empty,
+.ws-btn.empty {
 	background-color: var(--text4);
 }
 
@@ -489,16 +497,17 @@ For more information about configuration options, please visit the Wiki https://
 .power-menu-widget .label {
 	color: var(--red);
 	font-size: 13px;
+
 }
 
-.power-menu-popup {
-	background-color: transparent
-}
+/* .power-menu-popup { */
+/* 	background-color: none; */
+/* } */
 
 .power-menu-popup .button {
 	padding: 0;
 	width: 180px;
-	height: 230px;
+	height: 180px;
 	border-radius: 8px;
 	background-color: var(--bg-color1);
 	border: 4px solid transparent;
@@ -519,17 +528,17 @@ For more information about configuration options, please visit the Wiki https://
 
 .power-menu-popup .button .icon {
 	font-size: 64px;
-	padding-top: 32px;
+	/* padding-top: 32px; */
 	color: var(--text1);
 }
 
 .power-menu-popup .button.hover .label,
 .power-menu-popup .button.hover .icon {
-	color: rgba(255, 255, 255, 0.808)
+	color: var(--blue)
 }
 
 .power-menu-popup .button.cancel .icon {
-	padding-top: 32px;
+	/* padding-top: 32px; */
 	margin: 0;
 	/* max-height: 0; */
 	font-size: 64px;
@@ -541,21 +550,34 @@ For more information about configuration options, please visit the Wiki https://
 	margin: 0;
 }
 
-.power-menu-popup .button.cancel {
-	/* height: 40px; */
-	border-radius: 4px;
-}
+/* .power-menu-popup .button.cancel { */
+/* 	height: 40px; */
+/* 	border-radius: 4px; */
+/* } */
 
-.power-menu-popup .button.cancel.hover .label,
-.power-menu-popup .button.cancel.hover .icon {
-	color: rgb(255, 255, 255)
-}
+/* .power-menu-popup .button.cancel.hover .label, */
+/* .power-menu-popup .button.cancel.hover .icon { */
+/* 	color: rgb(255, 255, 255) */
+/* } */
 
-.uptime {
-	font-size: 14px;
-	margin-bottom: 10px;
+.power-menu-overlay .uptime {
+	font-size: 16px;
+	margin-bottom: 60px;
 	color: var(--text1);
 	font-weight: 600;
+	background-color: transparent;
+}
+
+.power-menu-popup .profile-info {
+	border-bottom: 1px solid var(--text1);
+	background-color: transparent;
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+}
+
+.power-menu-popup .profile-info * {
+	font-size: 16px;
+	background-color: transparent;
 }
 
 /* Quick Launch Widget */
