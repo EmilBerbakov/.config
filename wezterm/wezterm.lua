@@ -6,7 +6,7 @@ config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 2000 }
 local colorscheme
 
 local path = (os.getenv("WEZTERM_CONFIG_DIR") or os.getenv("HOME") or os.getenv("USERPROFILE"))
-	.. "\\wezterm_colorscheme"
+    .. "\\wezterm_colorscheme"
 path = path:gsub("\\\\", "/")
 local file = io.open(path, "r")
 if file == nil then

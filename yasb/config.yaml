@@ -11,13 +11,11 @@ bars:
     class_name: "yasb-bar"
     alignment:
       position: "top"
-      center: false
     animation:
       enabled: true
       duration: 400
     blur_effect:
       enabled: false
-      acrylic: false
       dark_mode: false
       round_corners: false
       round_corners_type: "normal"
@@ -36,22 +34,60 @@ bars:
       right: 4
     widgets:
       left:
-      - "glazewm_workspaces"
       - "taskbar"
       - "quick_launch"
       # - "active_window"
       center:
-      - "clock"
+      - "glazewm_workspaces"
       right:
+      - "light_switch"
+      # - "notes"
       - "glazewm_binding_mode"
       - "glazewm_tiling_direction"
       - "media"
+      - "clock"
       - "microphone"
       - "volume"
       - "notifications"
       - "systray"
       - "power_menu"
 widgets:
+  light_switch:
+    type: "yasb.custom.CustomWidget"
+    options:
+      class_name : "light_switch"
+      label: "<span></span>"
+      keybindings:
+        - keys: "ctrl+alt+shift+d"
+          action: "exec cmd /c pwsh -NoProfile -ExecutionPolicy Bypass -File C:/Users/8eber/.config/yasb/scripts/light-switch.ps1"
+  # notes:
+  #   type: "yasb.notes.NotesWidget"
+  #   options:
+  #     keybindings:
+  #       - keys: "alt+n"
+  #         action: "toggle_menu"
+  #     label: "<span>\udb82\udd0c</span> {count}"
+  #     label_alt: "{count} notes"
+  #     data_path: "~/Documents/my-notes.json"  # Optional: custom JSON file path
+  #     menu:
+  #       blur: true
+  #       round_corners: true
+  #       round_corners_type: "normal"
+  #       border_color: "System"
+  #       alignment: "right"
+  #       direction: "down"
+  #       offset_top: 6
+  #       offset_left: 0
+  #       max_title_size: 150
+  #       show_date_time: true
+  #     icons:
+  #       note: "\udb82\udd0c"
+  #       delete: "\ueab8"
+  #       copy: "\uebcc"
+  #     callbacks:
+  #       on_left: "toggle_menu"
+  #       on_middle: "do_nothing"
+  #       on_right: "do_nothing"
   power_menu:
     type: "yasb.power_menu.PowerMenuWidget"
     options:
@@ -63,7 +99,7 @@ widgets:
       blur: false
       blur_background: true
       animation_duration: 200 # Milliseconds
-      button_row: 5 # Number of buttons in a row, min 1 max 5
+      button_row: 3 # Number of buttons in a row, min 1 max 5
       buttons:
         lock: ["\uea75", "Lock"]
         sleep: ["\u23fe","Sleep"]
@@ -72,11 +108,6 @@ widgets:
         restart: ["\uead2", "Restart"]
         hibernate: ["\uf28e", "Hibernate"]
         cancel: ["\udb81\udf3a", "Cancel"]
-      label_shadow:
-        enabled: false
-        color: "black"
-        radius: 3
-        offset: [ 1, 1 ]
   quick_launch:
     type: "yasb.quick_launch.QuickLaunchWidget"
     options:
@@ -116,7 +147,10 @@ widgets:
                 enabled: true
                 prefix: "?"
                 priority: 5
-                engine: "google"
+                remove_engines: 
+                  - "google"
+                  - "bing"
+                  - "x"
             system_commands:
                 enabled: true
                 prefix: ">"
@@ -183,7 +217,7 @@ widgets:
         popup:
             width: 720
             height: 480
-            screen: "focus"
+            # screen: "focus"
             blur: true
             round_corners: true
             round_corners_type: "normal"
@@ -192,12 +226,14 @@ widgets:
         keybindings:
             - keys: "alt+space"
               action: "toggle_quick_launch"
+        callbacks:
+          on_left: "do_nothing"
   systray:
     type: "yasb.systray.SystrayWidget"
     options:
       class_name: "systray"
-      label_collapsed: "\uf0d7"
-      label_expanded: "\uf0da"
+      label_collapsed: "\uf0da"
+      label_expanded: "\uf0d7"
       label_position: "left" # Can be "left" or "right"
       icon_size: 18 # Can be any integer between 8 and 64
       pin_click_modifier: "alt" # Can be "ctrl", "alt" or "shift"
@@ -206,6 +242,8 @@ widgets:
       show_battery: true
       show_volume: false
       show_network: true
+      use_hook: true
+      show_in_popup: true
   media:
     type: "yasb.media.MediaWidget"
     options:
@@ -240,11 +278,6 @@ widgets:
         max_title_size: 80
         max_artist_size: 20
         show_source: true
-      label_shadow:
-        enabled: true
-        color: "#000000"
-        radius: 2
-        offset: [ 1, 1 ]
       scrolling_label:
         enabled: true
         update_interval_ms: 50
@@ -255,23 +288,23 @@ widgets:
         on_left: "toggle_media_menu"
         on_middle: "do_nothing"
         on_right: "toggle_label"
-  # active_window:
-  #   type: "yasb.active_window.ActiveWindowWidget"
-  #   options:
-  #     label: "{win[title]}"
-  #     label_alt: "[class_name='{win[class_name]}' exe='{win[process][name]}' hwnd={win[hwnd]}]"
-  #     label_no_window: ""
-  #     label_icon: false
-  #     label_icon_size: 14
-  #     max_length: 60
-  #     max_length_ellipsis: "..."
-  #     monitor_exclusive: true
+  active_window:
+    type: "yasb.active_window.ActiveWindowWidget"
+    options:
+      label: "{win[title]}"
+      label_alt: "[class_name='{win[class_name]}' exe='{win[process][name]}' hwnd={win[hwnd]}]"
+      label_no_window: ""
+      label_icon: false
+      label_icon_size: 14
+      max_length: 60
+      max_length_ellipsis: "..."
+      monitor_exclusive: true
   taskbar:
     type: "yasb.taskbar.TaskbarWidget"
     options:
       icon_size: 18
       tooltip: false
-      show_only_visible: false
+      show_only_visible: true
       strict_filtering: true
       monitor_exclusive: true
       animation:
@@ -328,7 +361,6 @@ widgets:
   glazewm_workspaces:
     type: "glazewm.workspaces.GlazewmWorkspacesWidget"
     options:
-      hide_empty_workspaces: true
       hide_if_offline: true
       active_populated_label: "\uebb4 {name}"
       active_empty_label: "\uebb5 {name}"

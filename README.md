@@ -9,3 +9,7 @@ After that, you're most likely going to have to restart.
 From there, things should just work.
 
 Copy this to HOMEPATH
+
+Speed up glazewm and yasb on startup by creating scheduled tasks that trigger on login.
+glazewm has to be done by hand, but yasb has a cli:
+```yasbc enable-autostart --task```
