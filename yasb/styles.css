@@ -12,8 +12,9 @@ For more information about configuration options, please visit the Wiki https://
 }
 
 .yasb-bar {
-	background-color: var(--color5);
-	border: 1px solid var(--color6);
+	/* background-color: var(--color5); */
+	border: 1px solid var(--color2);
+	background-color: var(--bg);
 }
 
 /* Global styles for ToolTip */
@@ -36,7 +37,7 @@ For more information about configuration options, please visit the Wiki https://
 	padding: 4px 0px;
 	font-family: 'Segoe UI';
 	font-size: 12px;
-	color: var(--color0)
+	color: var(--color0);
 }
 
 .context-menu::right-arrow {
@@ -123,62 +124,39 @@ For more information about configuration options, please visit the Wiki https://
 	padding: 0px 2px;
 }
 
-.microphone-widget .icon {
-	color: var(--color3);
+.microphone-widget *,
+.volume-widget * {
+	color: var(--color2);
 }
 
-.microphone-widget .icon.muted {
-	color: var(--red);
-}
-
-.microphone-menu {
-	background-color: var(--color5);
-}
-
-.microphone-menu .microphone-container .device {
-    background-color:transparent;
-    border: none;
-    padding:4px;
-    margin: 2px 0;
-    font-size: 12px;
-    border-radius: 4px;
-}
-
-.microphone-menu .microphone-container .device.selected {
-	background-color: var(--color2)
-}
-
-.microphone-menu .microphone-container .device:hover {
-    background-color: var(--color3);
-}
-
-.volume-widget .icon {
-	color: var(--color3);
-}
-
+.microphone-widget .icon.muted,
 .volume-widget .icon.muted {
 	color: var(--color6);
 }
 
+.microphone-menu,
 .audio-menu {
 	background-color: var(--color5);
 }
 
+.microphone-menu .microphone-container .device,
 .audio-menu .audio-container .device {
-    background-color:transparent;
-    border: none;
-    padding:4px;
-    margin: 2px 0;
-    font-size: 12px;
-    border-radius: 4px;
+	background-color: transparent;
+	border: none;
+	padding: 4px;
+	margin: 2px 0;
+	font-size: 12px;
+	border-radius: 4px;
 }
 
+.microphone-menu .microphone-container .device.selected,
 .audio-menu .audio-container .device.selected {
 	background-color: var(--color2)
 }
 
+.microphone-menu .microphone-container .device:hover,
 .audio-menu .audio-container .device:hover {
-    background-color: var(--color3);
+	background-color: var(--color3);
 }
 
 .media-widget .btn {
@@ -200,7 +178,7 @@ For more information about configuration options, please visit the Wiki https://
 .media-widget .btn.disabled:hover,
 .media-widget .btn.disabled {
 	color: var(--color3);
-	background-color: rgba(0, 0, 0, 0);
+	background-color: var(--color6);
 	font-size: 20px;
 }
 
@@ -269,26 +247,21 @@ For more information about configuration options, please visit the Wiki https://
 	margin-left: 10px;
 }
 
-.media-menu .btn:hover {
-	color: white;
-	background-color: rgba(255, 255, 255, 0.1);
-}
-
-.media-menu .btn.play {
-	background-color: rgba(255, 255, 255, 0.1);
-	font-size: 20px
-}
-
 .media-menu .btn.disabled:hover,
-.media-menu .btn.disabled {
-	color: #4e525c;
-	background-color: rgba(0, 0, 0, 0);
+.media-menu .btn:hover,
+.media-menu .btn.play:hover {
+
+	background-color: var(--color3);
+}
+
+.media-menu .btn.disabled,
+.media-menu .btn.play {
+	background-color: var(--color2);
 }
 
 .media-menu .playback-time {
 	font-size: 13px;
 	font-family: 'Segoe UI';
-	color: #7f849c;
 	margin-top: 20px;
 	min-width: 100px;
 }
@@ -302,14 +275,14 @@ For more information about configuration options, please visit the Wiki https://
 .media-menu .progress-slider::groove {
 	height: 2px;
 	border-radius: 3px;
-	background: var(--bg-color2);
+	background: var(--color2);
 
 }
 
 .media-menu .progress-slider::groove:hover {
 	height: 6px;
 	border-radius: 3px;
-	background: var(--bg-color2);
+	background: var(--color2);
 }
 
 .media-menu .progress-slider::sub-page {
@@ -318,15 +291,19 @@ For more information about configuration options, please visit the Wiki https://
 	height: 4px;
 }
 
-.notification-widget .icon.new-notification {
+.notification-widget * {
 	color: var(--color3);
 }
 
 .clock-widget {
-	background-color: var(--color3);
+	background-color: var(--color2);
 	border-radius: 8px;
 	padding: 4px;
 	margin: 4px 0;
+}
+
+.clock-widget:hover {
+	background-color: var(--color3);
 }
 
 .calendar {
@@ -337,8 +314,7 @@ For more information about configuration options, please visit the Wiki https://
 
 .calendar .calendar-table,
 .calendar .calendar-table::item {
-	background-color: rgba(17, 17, 27, 0);
-	color: rgba(162, 177, 196, 0.85);
+	background-color: var(--color5);
 	margin: 0;
 	padding: 0;
 	border: none;
@@ -372,11 +348,10 @@ For more information about configuration options, please visit the Wiki https://
 .calendar .holiday-label {
 	font-size: 12px;
 	font-weight: 600;
-	color: var(--color5);
+	color: var(--color6);
 }
 
 .calendar .holiday-label {
-	color: var(--red);
 	font-weight: 700;
 }
 
@@ -392,17 +367,17 @@ For more information about configuration options, please visit the Wiki https://
 }
 
 .glazewm-binding-mode .icon {
-	color: var(--color3);
+	color: var(--color2);
 }
 
 .glazewm-tiling-direction .btn {
 	font-size: 18px;
-	color: var(--color3);
+	color: var(--color2);
 	border: none;
 }
 
 .glazewm-tiling-direction .btn:hover {
-	color: var(--color0);
+	color: var(--color3);
 }
 
 .glazewm-workspaces .ws-btn {
@@ -410,51 +385,40 @@ For more information about configuration options, please visit the Wiki https://
 	border: none;
 	padding: 4px;
 	margin: 4px 0;
-	color: var(--color0);
 	border-radius: 8px;
 }
 
 .glazewm-workspaces .ws-btn.active_populated,
-.ws-btn.populated {
-	background-color: var(--color6);
-	color: var(--color0);
+.glazewm-workspaces .ws-btn.active_empty,
+.glazewm-workspaces .ws-btn.empty {
+	background-color: var(--bg);
+	color: var(--color2);
 }
 
-.glazewm-workspaces .ws-btn.focused_populated {
-	background-color: var(--color2);
+.glazewm-workspaces .ws-btn.active_populated .label,
+.glazewm-workspaces .ws-btn.populated .label,
+.glazewm-workspaces .ws-btn.active_empty .label {
+	color: var(--color2);
 }
 
-.glazewm-workspaces .ws-btn.focused_populated .label {
-	color: var(--color0);
-}
-
-.glazewm-workspaces .ws-btn.active_empty {
-	background-color: var(--color6);
-	color: var(--color0);
-}
-
-.glazewm-workspaces .ws-btn .label {
-	color: var(--color0);
-}
-
+.glazewm-workspaces .ws-btn.focused_populated,
 .glazewm-workspaces .ws-btn.focused_empty {
+	background-color: var(--color2);
 	color: var(--color0);
-	background-color: var(--color3);
 }
 
+.glazewm-workspaces .ws-btn.focused_populated .label,
 .glazewm-workspaces .ws-btn.focused_empty .label {
 	color: var(--color0);
 }
 
-.glazewm-workspaces .ws-btn.empty {
-	color: var(--color3);
+.glazewm-workspaces .ws-btn:hover {
+	background-color: var(--color3);
+	color: var(--color0);
 }
 
-.glazewm-workspaces .ws-btn:hover,
-.glazewm-workspaces .ws-btn.populated:hover,
-.glazewm-workspaces .ws-btn.empty:hover {
-	color: var(--color0);
-	background-color: var(--color3);
+.glazewm-workspaces .ws-btn .label:hover {
+	color: var(--color0)
 }
 
 .systray .unpinned-container {
@@ -479,11 +443,7 @@ For more information about configuration options, please visit the Wiki https://
 	color: var(--color3);
 }
 
-.systray .unpinned-visibility-btn:checked {
-	background: var(--color3);
-	color: var(--color0);
-}
-
+.systray .unpinned-visibility-btn:checked,
 .systray .unpinned-visibility-btn:hover {
 	background: var(--color3);
 	color: var(--color0);
@@ -525,6 +485,7 @@ For more information about configuration options, please visit the Wiki https://
 .power-menu-widget .label {
 	color: var(--color2);
 	font-size: 13px;
+	padding: 4px;
 }
 
 .power-menu-popup {
@@ -539,6 +500,7 @@ For more information about configuration options, please visit the Wiki https://
 	background-color: var(--color5);
 	border: 4px solid transparent;
 	margin: 0px;
+	color: var(--color2);
 }
 
 .power-menu-popup .button.hover {
@@ -559,11 +521,6 @@ For more information about configuration options, please visit the Wiki https://
 	color: var(--color0);
 }
 
-.power-menu-popup .button.hover .label,
-.power-menu-popup .button.hover .icon {
-	color: rgba(255, 255, 255, 0.808)
-}
-
 .power-menu-popup .button.cancel .icon {
 	padding-top: 32px;
 	margin: 0;
@@ -580,7 +537,7 @@ For more information about configuration options, please visit the Wiki https://
 
 .power-menu-popup .button.cancel.hover .label,
 .power-menu-popup .button.cancel.hover .icon {
-	color: rgb(255, 255, 255)
+	color: var(--color3);
 }
 
 .uptime {
@@ -594,10 +551,6 @@ For more information about configuration options, please visit the Wiki https://
 .quick-launch-widget .icon {
 	font-size: 14px;
 	padding: 0 4px;
-}
-
-.quick-launch-widget .icon:hover {
-	/* color: #fff; */
 }
 
 /* Quick Launch Popup - main window */
@@ -621,9 +574,7 @@ For more information about configuration options, please visit the Wiki https://
 .quick-launch-popup .search .search-icon {
 	font-family: "Segoe Fluent Icons";
 	font-size: 18px;
-	/* color: rgba(255, 255, 255, 0.6); */
 	border-bottom: 1px solid var(--color6);
-	/* opacity: 0.6; */
 	padding-right: 8px;
 	min-width: 18px;
 }
@@ -631,7 +582,6 @@ For more information about configuration options, please visit the Wiki https://
 .quick-launch-popup .search .search-submit-icon {
 	font-family: "Segoe Fluent Icons";
 	font-size: 18px;
-	/* color: rgba(255, 255, 255, 0.6); */
 	min-width: 18px;
 }
 
@@ -651,7 +601,6 @@ For more information about configuration options, please visit the Wiki https://
 	border-radius: 6px;
 	color: var(--color0);
 	padding: 8px;
-	/* margin-top: 2px; */
 	margin-right: 4px;
 	font-size: 13px;
 	font-weight: 600;
@@ -674,7 +623,6 @@ For more information about configuration options, please visit the Wiki https://
 }
 
 .quick-launch-popup .results-list-view .description {
-	/* color: rgba(255, 255, 255, 0.6); */
 	color: var(--color1);
 	font-size: 11px;
 	font-family: "Segoe UI";
@@ -689,9 +637,7 @@ For more information about configuration options, please visit the Wiki https://
 
 .quick-launch-popup .results-list-view::item:hover,
 .quick-launch-popup .results-list-view::item:selected {
-	/* background-color: rgba(128, 130, 158, 0.1); */
 	background-color: var(--color3);
-	/* opacity: 0.1; */
 }
 
 /* Empty state when no results found */
@@ -704,38 +650,34 @@ For more information about configuration options, please visit the Wiki https://
 
 /* Preview Pane */
 .quick-launch-popup .preview {
-	/* background: rgba(0, 0, 0, 0); */
-	background-color: var(--color0);
-	/* border-left: 1px solid rgba(255, 255, 255, 0.06); */
+	background-color: var(--color5);
 	border-left: 1px solid var(--color6);
 }
 
 .quick-launch-popup .preview .preview-text {
 	font-size: 13px;
-	/* color: rgba(255, 255, 255, 0.85); */
 	padding: 8px 12px;
 	font-family: "Segoe UI";
-	/* background-color: rgba(255, 255, 255, 0.03); */
 	background-color: var(--color6);
-	/* opacity: 0.03; */
 	border: none;
 }
 
 .quick-launch-popup .preview .preview-image {
-	background-color: rgba(255, 255, 255, 0.03);
+	background-color: var(--color5);
 	padding: 8px 12px;
 }
 
 .quick-launch-popup .preview .preview-meta {
 	padding: 6px 12px;
-	border-top: 1px solid rgba(255, 255, 255, 0.06);
+	/* border-top: 1px solid rgba(255, 255, 255, 0.06); */
+	border-top: 1px solid var(--color6);
 	font-family: "Segoe UI";
 }
 
 .quick-launch-popup .preview .preview-meta .preview-title {
 	font-size: 14px;
 	font-weight: 600;
-	color: rgb(255, 255, 255);
+	color: var(--color0);
 	font-family: "Segoe UI";
 	margin-bottom: 10px;
 	margin-left: -2px;
@@ -743,7 +685,7 @@ For more information about configuration options, please visit the Wiki https://
 
 .quick-launch-popup .preview .preview-meta .preview-subtitle {
 	font-size: 12px;
-	color: rgba(255, 255, 255, 0.8);
+	color: var(--color1);
 	font-family: "Segoe UI";
 	padding-bottom: 1px;
 }
@@ -753,17 +695,14 @@ For more information about configuration options, please visit the Wiki https://
 	font-size: 13px;
 	font-family: "Segoe UI";
 	font-weight: 600;
-	color: #ffffff;
+	color: var(--color0);
 	padding: 8px 12px 4px 12px;
 }
 
 .quick-launch-popup .preview.edit .preview-line-edit {
-	/* background: rgba(255, 255, 255, 0.06); */
-	background: var(--color6);
-	/* opacity: 0.06; */
-	border: 1px solid rgba(255, 255, 255, 0.12);
+	background: var(--color5);
+	border: 1px solid var(--color6);
 	border-radius: 4px;
-	/* color: #ffffff; */
 	font-size: 13px;
 	font-family: "Segoe UI";
 	padding: 6px 8px;
@@ -771,14 +710,14 @@ For more information about configuration options, please visit the Wiki https://
 }
 
 .quick-launch-popup .preview.edit .preview-line-edit:focus {
-	border-color: rgba(255, 255, 255, 0.3);
+	border-color: var(--color6);
 }
 
 .quick-launch-popup .preview.edit .preview-text-edit {
 	background: rgba(255, 255, 255, 0.06);
 	border: 1px solid rgba(255, 255, 255, 0.12);
 	border-radius: 4px;
-	color: #ffffff;
+	color: var(color0);
 	font-size: 13px;
 	font-family: "Segoe UI";
 	padding: 6px 8px;
@@ -786,7 +725,7 @@ For more information about configuration options, please visit the Wiki https://
 }
 
 .quick-launch-popup .preview.edit .preview-text-edit:focus {
-	border-color: rgba(255, 255, 255, 0.3);
+	border-color: var(--color6);
 }
 
 .quick-launch-popup .preview.edit .preview-actions {
@@ -794,10 +733,10 @@ For more information about configuration options, please visit the Wiki https://
 }
 
 .quick-launch-popup .preview.edit .preview-btn {
-	background: rgb(45, 46, 48);
+	background: var(--color2);
 	border: none;
 	border-radius: 4px;
-	color: rgba(255, 255, 255, 0.8);
+	/* color: rgba(255, 255, 255, 0.8); */
 	font-size: 12px;
 	font-family: "Segoe UI";
 	font-weight: 600;
@@ -805,14 +744,14 @@ For more information about configuration options, please visit the Wiki https://
 }
 
 .quick-launch-popup .preview.edit .preview-btn:hover {
-	background: rgb(59, 60, 63);
+	background: var(--color3);
 }
 
 .quick-launch-popup .preview.edit .preview-btn.save {
-	background: rgb(12, 81, 190);
-	color: #ffffff;
+	background: var(--color2);
+	/* color: #ffffff; */
 }
 
 .quick-launch-popup .preview.edit .preview-btn.save:hover {
-	background: rgb(19, 90, 204);
+	background: var(--color3);
 }

@@ -11,7 +11,8 @@ Set-ItemProperty -Path $path -Name $app -Value $( 1-$appVal)
 
 $isLightMode = 1-$sysVal -eq 1
 
-$wallpaper = "C:\Users\8eber\Downloads\$(($isLightMode) ? 'light-mode.jpeg' : 'dark-mode.jpeg')"
+# $wallpaper = "C:\Users\8eber\Downloads\$(($isLightMode) ? 'light-mode.jpeg' : 'dark-mode.jpeg')"
+$wallpaper = Resolve-Path "~/OneDrive/Pictures/Wallpapers/$(($isLightMode) ? 'light-mode.jpg' : 'dark-mode.png')"
 
 Add-Type @"
 using System;
@@ -38,15 +39,6 @@ $SMTO_ABORTIFHUNG = 0x2
 [UIntPtr]$res = [UIntPtr]::Zero
 [WinAPI]::SendMessageTimeout($HWND_BROADCAST, $WM_SETTINGCHANGE, [UIntPtr]::Zero, "ImmersiveColorSet", $SMTO_ABORTIFHUNG, 5000, [ref]$res) | Out-Null
 
-# $AccentColor = Get-ItemPropertyValue -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent' -Name 'AccentColorMenu'
-
-# $AccentPalette = Get-ItemPropertyValue -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent' -Name 'AccentPalette'
-# $ColorBytes = $AccentPalette[0x10..0x13]
-# # Set-Content -Path '~/.config/yasb/vars.css' -Value ":root { --main: #$([System.Convert]::ToString($AccentColor, 16).Substring(2)); }"
-#
-# $Color4 = "#{0:X2}{1:X2}{2:X2}" -f $ColorBytes[2], $ColorBytes[1], $ColorBytes[0]
-#
-# Set-Content -Path '~/.config/yasb/vars.css' -Value ":root { --color4: $($Color4); }"
 $AccentPalette = Get-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name "AccentPalette"
 if ($AccentPalette) {
     $cssContent = ":root {"
@@ -58,6 +50,7 @@ if ($AccentPalette) {
         $hexColor = "#{0:X2}{1:X2}{2:X2}" -f $r, $g, $b
         $cssContent += " --color$($i): $($hexColor); "
     }
+    $cssContent += "--bg: #$(($isLightMode) ? 'F3F3F3' : '202020' );"
     $cssContent += "}"
     Set-Content -Path '~/.config/yasb/vars.css' -Value $cssContent
 }

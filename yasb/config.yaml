@@ -399,6 +399,10 @@ widgets:
         on_left: "toggle_mute"
         on_middle: "toggle_mic_menu"
         on_right: "exec cmd.exe /c start ms-settings:sound"
+      keybindings:
+        - keys: "ctrl+alt+shift+m"
+          action: "toggle_mute"
+
   notifications:
     type: "yasb.notifications.NotificationsWidget"
     options:
