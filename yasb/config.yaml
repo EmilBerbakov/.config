@@ -27,11 +27,11 @@ bars:
     dimensions:
       width: "100%"
       height: 32
-    padding:
-      top: 4
-      left: 4
-      bottom: 0
-      right: 4
+    # padding:
+    #   top: 4
+    #   left: 4
+    #   bottom: 4
+    #   right: 4
     widgets:
       left:
       - "taskbar"
@@ -56,7 +56,7 @@ widgets:
     type: "yasb.custom.CustomWidget"
     options:
       class_name : "light_switch"
-      label: "<span></span>"
+      label: ""
       keybindings:
         - keys: "ctrl+alt+shift+d"
           action: "exec cmd /c pwsh -NoProfile -ExecutionPolicy Bypass -File C:/Users/8eber/.config/yasb/scripts/light-switch.ps1"
@@ -147,10 +147,16 @@ widgets:
                 enabled: true
                 prefix: "?"
                 priority: 5
+                engine: "brave"
                 remove_engines: 
-                  - "google"
-                  - "bing"
+                  # - "google"
+                  # - "bing"
                   - "x"
+                  - "youtube"
+                  - "wikipedia"
+                  - "github"
+                  - "reddit"
+                  - "stackoverflow"
             system_commands:
                 enabled: true
                 prefix: ">"
@@ -376,8 +382,6 @@ widgets:
     type: "yasb.volume.VolumeWidget"
     options:
       label: "<span>{icon}</span> {level}"
-      label_alt: "{volume}"
-      tooltip: false
       volume_icons:
         - "\ueee8"
         - "\uf026"
