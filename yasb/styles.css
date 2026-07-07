@@ -1,27 +1,23 @@
-/* 
-This is default and very simple styles file for Yasb. 
-For more information about configuration options, please visit the Wiki https://github.com/amnweb/yasb/wiki
-*/
-@import url('vars.css');
+@import url('material-palette.css');
 
 * {
 	font-size: 12px;
-	color: var(--color0);
+	color: var(--on_surface);
 	font-weight: 600;
 	font-family: "JetBrainsMono NFP";
 }
 
 .yasb-bar {
 	/* background-color: var(--color5); */
-	border: 1px solid var(--color2);
-	background-color: var(--bg);
+	border: 1px solid var(--outline);
+	background-color: var(--surface);
 }
 
 /* Global styles for ToolTip */
 .tooltip {
-	background-color: var(--color5);
+	background-color: var(--surface);
 	border-radius: 4px;
-	color: var(--color0);
+	/* color: var(--on_surface); */
 	padding: 5px 12px;
 	font-size: 12px;
 	font-family: 'Segoe UI';
@@ -32,12 +28,11 @@ For more information about configuration options, please visit the Wiki https://
 /* Global context menu style */
 .context-menu,
 .context-menu .menu-checkbox {
-	background-color: var(--color5);
+	background-color: var(--surface);
 	border: none;
 	padding: 4px 0px;
 	font-family: 'Segoe UI';
 	font-size: 12px;
-	color: var(--color0);
 }
 
 .context-menu::right-arrow {
@@ -57,18 +52,17 @@ For more information about configuration options, please visit the Wiki https://
 
 .context-menu::item:selected,
 .context-menu .menu-checkbox:hover {
-	background-color: var(--color2);
-	color: var(--color0);
+	background-color: var(--on_primary);
 }
 
 .context-menu::separator {
 	height: 1px;
-	background-color: var(--color6);
+	background-color: var(--outline);
 	margin: 4px 8px;
 }
 
 .context-menu::item:disabled {
-	color: var(--color6);
+	color: var(--surface_variant);
 	background-color: transparent;
 }
 
@@ -77,7 +71,6 @@ For more information about configuration options, please visit the Wiki https://
 	padding: 8px 16px;
 	font-size: 12px;
 	margin: 0;
-	color: var(--color0);
 	font-family: 'Segoe UI'
 }
 
@@ -87,7 +80,7 @@ For more information about configuration options, please visit the Wiki https://
 }
 
 .context-menu .menu-checkbox .checkbox:unchecked {
-	color: var(--color6)
+	color: var(--surface_variant);
 }
 
 .context-menu .menu-checkbox .checkbox::indicator {
@@ -98,12 +91,11 @@ For more information about configuration options, please visit the Wiki https://
 }
 
 .context-menu .menu-checkbox .checkbox::indicator:unchecked {
-	background: var(--color6);
 	border-radius: 2px;
 }
 
 .context-menu .menu-checkbox .checkbox::indicator:checked {
-	background: var(--color3);
+	background: var(--primary);
 	border-radius: 2px;
 }
 
@@ -124,260 +116,148 @@ For more information about configuration options, please visit the Wiki https://
 	padding: 0px 2px;
 }
 
-.microphone-widget *,
-.volume-widget * {
-	color: var(--color2);
+.microphone-widget .icon.muted,
+.microphone-widget .label.muted,
+.volume-widget .icon.muted,
+.volume-widget .label.muted {
+	color: var(--surface_variant);
 }
 
-.microphone-widget .icon.muted,
-.volume-widget .icon.muted {
-	color: var(--color6);
+.audio_grouper .container {
+	background-color: var(--primary_container);
+	margin: 4px 0;
+	border-radius: 8px;
+}
+
+.audio_grouper .container .icon,
+.audio_grouper .container .label,
+.audio_grouper .container .btn {
+	color: var(--on_primary_container);
+}
+
+.audio_grouper .container:hover {
+	background-color: var(--inverse_primary);
+}
+
+.audio_grouper .container:hover .icon:hover,
+.audio_grouper .container .label:hover,
+.audio_grouper .container .btn:hover {
+	color: var(--primary);
 }
 
 .microphone-menu,
 .audio-menu {
-	background-color: var(--color5);
-}
-
-.microphone-menu .microphone-container .device,
-.audio-menu .audio-container .device {
-	background-color: transparent;
-	border: none;
-	padding: 4px;
-	margin: 2px 0;
-	font-size: 12px;
-	border-radius: 4px;
+	background-color: var(--surface);
 }
 
 .microphone-menu .microphone-container .device.selected,
 .audio-menu .audio-container .device.selected {
-	background-color: var(--color2)
+	background-color: var(--primary_container);
+	color: var(--on_primary_container);
 }
 
 .microphone-menu .microphone-container .device:hover,
 .audio-menu .audio-container .device:hover {
-	background-color: var(--color3);
+	background-color: var(--primary_fixed);
+	color: var(--on_primary_fixed);
 }
 
-.media-widget .btn {
-	color: var(--color0);
-	font-family: "JetBrainsMono NFP";
-	font-weight: 400;
-	font-size: 20px;
-}
-
-.media-widget .btn:hover {
-	color: var(--text2);
-}
-
-.media-widget .btn.play {
-	font-size: 24px;
-	color: var(--color3);
-}
-
-.media-widget .btn.disabled:hover,
-.media-widget .btn.disabled {
-	color: var(--color3);
-	background-color: var(--color6);
-	font-size: 20px;
-}
-
-.media-menu {
-	min-width: 420px;
-	max-width: 420px;
-	background-color: var(--color5);
-	border-radius: 8px;
-	border: 1px solid var(--color6);
-}
-
-.media-menu .title,
-.media-menu .artist,
-.media-menu .source {
-	font-size: 14px;
-	font-weight: 600;
-	margin-left: 10px;
-	font-family: 'JetBrainsMono NFP'
-}
-
-.media-menu .artist {
-	font-size: 13px;
-	color: #6c7086;
-	margin-top: 0px;
-	margin-bottom: 8px;
-}
-
-.media-menu .source {
-	font-size: 11px;
-	color: #000;
-	font-weight: normal;
-	border-radius: 3px;
-	background-color: #bac2de;
-	padding: 2px 4px;
-
-}
-
-.media-menu .source.brave {
-	background-color: #fb542b;
-	color: var(--color0);
-}
-
-.media-menu .source.edge {
-	background-color: #0078d4;
-	color: var(--color0);
-}
-
-.media-menu .source.windows-media {
-	background-color: #0078d4;
-	color: var(--color0);
-}
-
-.media-menu .btn {
-	font-family: "Segoe Fluent Icons";
-	font-size: 14px;
-	font-weight: 400;
-	margin: 10px 2px 0px 2px;
-	min-width: 40px;
-	max-width: 40px;
-	min-height: 40px;
-	max-height: 40px;
-	border-radius: 20px;
-}
-
-.media-menu .btn.prev {
-	margin-left: 10px;
-}
-
-.media-menu .btn.disabled:hover,
-.media-menu .btn:hover,
-.media-menu .btn.play:hover {
-
-	background-color: var(--color3);
-}
-
-.media-menu .btn.disabled,
-.media-menu .btn.play {
-	background-color: var(--color2);
-}
-
-.media-menu .playback-time {
-	font-size: 13px;
-	font-family: 'Segoe UI';
-	margin-top: 20px;
-	min-width: 100px;
-}
-
-.media-menu .progress-slider {
-	height: 10px;
-	margin: 5px 4px;
-	border-radius: 3px;
-}
-
-.media-menu .progress-slider::groove {
-	height: 2px;
-	border-radius: 3px;
-	background: var(--color2);
-
-}
-
-.media-menu .progress-slider::groove:hover {
-	height: 6px;
-	border-radius: 3px;
-	background: var(--color2);
-}
-
-.media-menu .progress-slider::sub-page {
-	background: var(--color0);
-	border-radius: 3px;
-	height: 4px;
-}
-
-.notification-widget * {
-	color: var(--color3);
-}
-
-.clock-widget {
-	background-color: var(--color2);
+.notification-widget {
+	background: var(--primary_container);
 	border-radius: 8px;
 	padding: 4px;
 	margin: 4px 0;
 }
 
-.clock-widget:hover {
-	background-color: var(--color3);
+.notification-widget .icon,
+.notification-widget .label {
+	color: var(--on_primary_container);
+	font-size: 12px;
 }
 
-.calendar {
-	background-color: var(--color5);
+.clock-widget {
+	background-color: var(--primary_container);
 	border-radius: 8px;
-	border: 1px solid var(--color6);
+	padding: 4px;
+	margin: 4px 0;
 }
 
-.calendar .calendar-table,
-.calendar .calendar-table::item {
-	background-color: var(--color5);
+.clock-widget .label,
+.clock-widget .icon {
+	color: var(--on_primary_container);
+}
+
+.clock-widget:hover {
+	background-color: var(--inverse_primary);
+}
+
+.clock-widget .label:hover,
+.clock-widget .icon:hover {
+	color: var(--primary);
+}
+
+.clock-popup.calendar {
+	background-color: var(--surface);
+	border-radius: 8px;
+	border: 1px solid var(--outline);
+}
+
+.clock-popup.calendar .calendar-table,
+.clock-popup.calendar .calendar-table::item {
+	background-color: var(--surface);
 	margin: 0;
 	padding: 0;
 	border: none;
 	outline: none;
 }
 
-.calendar .calendar-table::item:selected {
-	color: var(--color5);
-	background-color: var(--color3);
+.clock-popup.calendar .calendar-table::item:selected {
+	color: var(--on_primary);
+	background-color: var(--primary);
 	border-radius: 8px;
 }
 
-.calendar .day-label {
+.clock-popup.calendar .day-label {
 	margin-top: 20px;
 }
 
-.calendar .day-label,
-.calendar .month-label,
-.calendar .date-label,
-.calendar .week-label,
-.calendar .holiday-label {
+.clock-popup.calendar .day-label,
+.clock-popup.calendar .month-label,
+.clock-popup.calendar .date-label,
+.clock-popup.calendar .week-label,
+.clock-popup.calendar .holiday-label {
 	font-family: "Segoe UI";
 	font-size: 16px;
-	color: var(--color0);
 	font-weight: 700;
 	min-width: 180px;
 	max-width: 180px;
 }
 
-.calendar .week-label,
-.calendar .holiday-label {
+.clock-popup.calendar .week-label,
+.clock-popup.calendar .holiday-label {
 	font-size: 12px;
 	font-weight: 600;
-	color: var(--color6);
 }
 
-.calendar .holiday-label {
+.clock-popup.calendar .holiday-label {
 	font-weight: 700;
 }
 
-.calendar .month-label {
+.clock-popup.calendar .month-label {
 	font-weight: normal;
 }
 
-.calendar .date-label {
+.clock-popup.calendar .date-label {
 	font-size: 88px;
 	font-weight: 900;
-	color: var(--color0);
 	margin-top: -20px;
-}
-
-.glazewm-binding-mode .icon {
-	color: var(--color2);
 }
 
 .glazewm-tiling-direction .btn {
 	font-size: 18px;
-	color: var(--color2);
+	padding: 0;
+	margin: 0;
 	border: none;
-}
-
-.glazewm-tiling-direction .btn:hover {
-	color: var(--color3);
 }
 
 .glazewm-workspaces .ws-btn {
@@ -391,66 +271,43 @@ For more information about configuration options, please visit the Wiki https://
 .glazewm-workspaces .ws-btn.active_populated,
 .glazewm-workspaces .ws-btn.active_empty,
 .glazewm-workspaces .ws-btn.empty {
-	background-color: var(--bg);
-	color: var(--color2);
-}
-
-.glazewm-workspaces .ws-btn.active_populated .label,
-.glazewm-workspaces .ws-btn.populated .label,
-.glazewm-workspaces .ws-btn.active_empty .label {
-	color: var(--color2);
+	background-color: var(--surface);
 }
 
 .glazewm-workspaces .ws-btn.focused_populated,
 .glazewm-workspaces .ws-btn.focused_empty {
-	background-color: var(--color2);
-	color: var(--color0);
+	background-color: var(--primary_container);
+	color: var(--on_primary_container);
+}
+
+
+.glazewm-workspaces .ws-btn:hover,
+.glazewm-workspaces .ws-btn .label:hover {
+	background-color: var(--inverse_primary);
+	color: var(--primary);
 }
 
 .glazewm-workspaces .ws-btn.focused_populated .label,
 .glazewm-workspaces .ws-btn.focused_empty .label {
-	color: var(--color0);
-}
-
-.glazewm-workspaces .ws-btn:hover {
-	background-color: var(--color3);
-	color: var(--color0);
-}
-
-.glazewm-workspaces .ws-btn .label:hover {
-	color: var(--color0)
-}
-
-.systray .unpinned-container {
-	background: var(--color3);
-	border-radius: 8px;
-	padding: 0 4px;
-}
-
-.systray .button {
-	border-radius: 4px;
-}
-
-.systray .button:hover {
-	background: var(--color3);
-	padding: 4px;
+	color: var(--on_primary_container);
 }
 
 .systray .unpinned-visibility-btn {
 	border-radius: 8px;
 	height: 22px;
 	width: 22px;
-	color: var(--color3);
+	color: var(--on_primary_container);
+	background-color: var(--primary_container);
 }
 
 .systray .unpinned-visibility-btn:checked,
 .systray .unpinned-visibility-btn:hover {
-	background: var(--color3);
-	color: var(--color0);
+	background: var(--inverse_primary);
+	color: var(--primary);
 }
 
 .systray-popup {
-	background-color: var(--color3);
+	background-color: var(--surface);
 }
 
 .systray-popup .button {
@@ -468,28 +325,37 @@ For more information about configuration options, please visit the Wiki https://
 .taskbar-widget .app-container .app-title {
 	padding-left: 4px;
 	font-size: 12px;
+	color: var(--on_primary_container);
 }
 
 .taskbar-widget .app-container.foreground {
-	background-color: var(--color2);
+	background-color: var(--primary_container);
 }
 
 .taskbar-widget .app-container:hover {
-	background: var(--color3);
+	background: var(--inverse_primary);
+}
+
+.taskbar-widget .app-container .app-title:hover {
+	color: var(--primary);
 }
 
 .taskbar-widget .app-container.flashing {
-	background-color: var(--color1);
+	background-color: var(--error);
 }
 
 .power-menu-widget .label {
-	color: var(--color2);
 	font-size: 13px;
 	padding: 4px;
+	color: var(--error);
+}
+
+.power-menu-widget .label:hover {
+	color: var(--on_error_container);
 }
 
 .power-menu-popup {
-	background-color: transparent
+	background-color: transparent;
 }
 
 .power-menu-popup .button {
@@ -497,28 +363,27 @@ For more information about configuration options, please visit the Wiki https://
 	width: 180px;
 	height: 230px;
 	border-radius: 8px;
-	background-color: var(--color5);
+	background-color: var(--primary_container);
 	border: 4px solid transparent;
 	margin: 0px;
-	color: var(--color2);
+	color: var(--on_primary_container);
 }
 
 .power-menu-popup .button.hover {
-	background-color: var(--color5);
-	border: 4px solid var(--color6);
+	background-color: var(--inverse_primary);
+	color: var(--on_surface);
+	border: 4px solid var(--outline);
 }
 
 .power-menu-popup .button .label {
 	margin-bottom: 8px;
 	font-size: 16px;
 	font-weight: 500;
-	color: var(--color0);
 }
 
 .power-menu-popup .button .icon {
 	font-size: 64px;
 	padding-top: 32px;
-	color: var(--color0);
 }
 
 .power-menu-popup .button.cancel .icon {
@@ -535,15 +400,9 @@ For more information about configuration options, please visit the Wiki https://
 	border-radius: 4px;
 }
 
-.power-menu-popup .button.cancel.hover .label,
-.power-menu-popup .button.cancel.hover .icon {
-	color: var(--color3);
-}
-
 .uptime {
 	font-size: 14px;
 	margin-bottom: 10px;
-	color: var(--color0);
 	font-weight: 600;
 }
 
@@ -555,7 +414,7 @@ For more information about configuration options, please visit the Wiki https://
 
 /* Quick Launch Popup - main window */
 .quick-launch-popup .container {
-	background-color: var(--color5);
+	background-color: var(--surface);
 	opacity: 0.7;
 }
 
@@ -563,18 +422,18 @@ For more information about configuration options, please visit the Wiki https://
 .quick-launch-popup .search {
 	padding: 12px 16px;
 	background-color: transparent;
-	border-bottom: 1px solid var(--color6);
+	border-bottom: 1px solid var(--outline);
 }
 
 /* Search loader line color */
 .quick-launch-popup .search .loader-line {
-	color: var(--color3);
+	color: var(--secondary);
 }
 
 .quick-launch-popup .search .search-icon {
 	font-family: "Segoe Fluent Icons";
 	font-size: 18px;
-	border-bottom: 1px solid var(--color6);
+	border-bottom: 1px solid var(--outline);
 	padding-right: 8px;
 	min-width: 18px;
 }
@@ -588,7 +447,6 @@ For more information about configuration options, please visit the Wiki https://
 .quick-launch-popup .search .search-input {
 	background: transparent;
 	border: none;
-	color: var(--color0);
 	font-size: 16px;
 	font-family: "Segoe UI";
 	font-weight: 400;
@@ -597,9 +455,9 @@ For more information about configuration options, please visit the Wiki https://
 
 /* Search prefix styling (e.g., ">" for commands) */
 .quick-launch-popup .search .prefix {
-	background: var(--color3);
+	background: var(--primary);
 	border-radius: 6px;
-	color: var(--color0);
+	color: var(--on_primary);
 	padding: 8px;
 	margin-right: 4px;
 	font-size: 13px;
@@ -619,11 +477,10 @@ For more information about configuration options, please visit the Wiki https://
 	font-size: 16px;
 	font-family: "Segoe UI";
 	font-weight: 600;
-	color: var(--color0);
 }
 
 .quick-launch-popup .results-list-view .description {
-	color: var(--color1);
+	color: var(--secondary);
 	font-size: 11px;
 	font-family: "Segoe UI";
 	font-weight: 600;
@@ -637,47 +494,45 @@ For more information about configuration options, please visit the Wiki https://
 
 .quick-launch-popup .results-list-view::item:hover,
 .quick-launch-popup .results-list-view::item:selected {
-	background-color: var(--color3);
+	background-color: var(--primary_container);
+	color: var(--on_primary_container);
 }
 
 /* Empty state when no results found */
 .quick-launch-popup .results-empty-text {
 	font-size: 24px;
 	font-family: "Segoe UI";
-	color: var(--color0);
 	padding-top: 8px;
 }
 
 /* Preview Pane */
 .quick-launch-popup .preview {
-	background-color: var(--color5);
-	border-left: 1px solid var(--color6);
+	background-color: var(--surface_variant);
+	border-left: 1px solid var(--outline);
 }
 
 .quick-launch-popup .preview .preview-text {
 	font-size: 13px;
 	padding: 8px 12px;
 	font-family: "Segoe UI";
-	background-color: var(--color6);
+	background-color: var(--surface_variant);
 	border: none;
 }
 
 .quick-launch-popup .preview .preview-image {
-	background-color: var(--color5);
+	background-color: var(--surface_variant);
 	padding: 8px 12px;
 }
 
 .quick-launch-popup .preview .preview-meta {
 	padding: 6px 12px;
-	/* border-top: 1px solid rgba(255, 255, 255, 0.06); */
-	border-top: 1px solid var(--color6);
+	border-top: 1px solid var(--outline);
 	font-family: "Segoe UI";
 }
 
 .quick-launch-popup .preview .preview-meta .preview-title {
 	font-size: 14px;
 	font-weight: 600;
-	color: var(--color0);
 	font-family: "Segoe UI";
 	margin-bottom: 10px;
 	margin-left: -2px;
@@ -685,7 +540,6 @@ For more information about configuration options, please visit the Wiki https://
 
 .quick-launch-popup .preview .preview-meta .preview-subtitle {
 	font-size: 12px;
-	color: var(--color1);
 	font-family: "Segoe UI";
 	padding-bottom: 1px;
 }
@@ -695,13 +549,12 @@ For more information about configuration options, please visit the Wiki https://
 	font-size: 13px;
 	font-family: "Segoe UI";
 	font-weight: 600;
-	color: var(--color0);
 	padding: 8px 12px 4px 12px;
 }
 
 .quick-launch-popup .preview.edit .preview-line-edit {
-	background: var(--color5);
-	border: 1px solid var(--color6);
+	background: var(--surface);
+	border: 1px solid var(--outline);
 	border-radius: 4px;
 	font-size: 13px;
 	font-family: "Segoe UI";
@@ -710,7 +563,7 @@ For more information about configuration options, please visit the Wiki https://
 }
 
 .quick-launch-popup .preview.edit .preview-line-edit:focus {
-	border-color: var(--color6);
+	border-color: var(--outline);
 }
 
 .quick-launch-popup .preview.edit .preview-text-edit {
@@ -725,7 +578,7 @@ For more information about configuration options, please visit the Wiki https://
 }
 
 .quick-launch-popup .preview.edit .preview-text-edit:focus {
-	border-color: var(--color6);
+	border-color: var(--outline);
 }
 
 .quick-launch-popup .preview.edit .preview-actions {
@@ -733,10 +586,10 @@ For more information about configuration options, please visit the Wiki https://
 }
 
 .quick-launch-popup .preview.edit .preview-btn {
-	background: var(--color2);
+	background: var(--secondary);
+	color: var(--on_secondary);
 	border: none;
 	border-radius: 4px;
-	/* color: rgba(255, 255, 255, 0.8); */
 	font-size: 12px;
 	font-family: "Segoe UI";
 	font-weight: 600;
@@ -744,14 +597,31 @@ For more information about configuration options, please visit the Wiki https://
 }
 
 .quick-launch-popup .preview.edit .preview-btn:hover {
-	background: var(--color3);
+	background: var(--inverse_primary);
 }
 
 .quick-launch-popup .preview.edit .preview-btn.save {
-	background: var(--color2);
-	/* color: #ffffff; */
+	background: var(--primary);
+	color: var(--on_primary);
 }
 
 .quick-launch-popup .preview.edit .preview-btn.save:hover {
-	background: var(--color3);
+	background: var(--inverse_primary);
+	color: var(--primary);
+}
+
+
+.wallpapers-gallery-window {
+	background-color: var(--surface);
+	opacity: 0.7;
+}
+
+.wallpapers-gallery-image {
+	border: 4px solid transparent;
+	border-radius: 16px;
+}
+
+.wallpapers-gallery-image:hover,
+.wallpapers-gallery-image.focused {
+	border: 4px solid var(--outline);
 }

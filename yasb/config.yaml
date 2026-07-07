@@ -1,9 +1,9 @@
-# This is default and very simple configuration file for Yasb. 
-# For more information about configuration options, please visit the Wiki https://github.com/amnweb/yasb/wiki
 watch_stylesheet: true
 watch_config: true
-debug: false
+debug: true
 update_check: true # Enable automatic update check.
+glazewm:
+  start_command: "glazewm.exe start"
 bars:
   primary-bar:
     enabled: true
@@ -27,67 +27,114 @@ bars:
     dimensions:
       width: "100%"
       height: 32
-    # padding:
-    #   top: 4
-    #   left: 4
-    #   bottom: 4
-    #   right: 4
     widgets:
       left:
       - "taskbar"
       - "quick_launch"
+      - "wallpaper"
       # - "active_window"
       center:
       - "glazewm_workspaces"
       right:
       - "light_switch"
-      # - "notes"
-      - "glazewm_binding_mode"
-      - "glazewm_tiling_direction"
-      - "media"
+      - "glazewm_grouper"
+      # - "glazewm_binding_mode"
+      # - "glazewm_tiling_direction"
+      # - "media"
       - "clock"
-      - "microphone"
-      - "volume"
+      - "audio_grouper"
       - "notifications"
       - "systray"
       - "power_menu"
 widgets:
-  light_switch:
-    type: "yasb.custom.CustomWidget"
+  audio_grouper:
+    type: "yasb.grouper.GrouperWidget"
     options:
-      class_name : "light_switch"
+      class_name: "audio_grouper"
+      widgets:
+        - "microphone"
+        - "volume"
+      collapse_options:
+          enabled: false
+  glazewm_grouper:
+    type: "yasb.grouper.GrouperWidget"
+    options:
+      class_name: "audio_grouper"
+      widgets:
+        - "glazewm_binding_mode"
+        - "glazewm_tiling_direction"
+
+  volume:
+    type: "yasb.volume.VolumeWidget"
+    options:
+      label: "<span>{icon}</span> {level}"
+      volume_icons:
+        - "\ueee8"
+        - "\uf026"
+        - "\uf027"
+        - "\uf027"
+        - "\uf028"
+      callbacks:
+        on_left: "toggle_volume_menu"
+        on_middle: "toggle_mute"
+        on_right: "exec cmd.exe /c start ms-settings:sound"
+  microphone:
+    type: "yasb.microphone.MicrophoneWidget"
+    options:
+      label: "<span>{icon}</span> {level}"
+      icons:
+        normal: "\udb80\udf6c"
+        muted: "\udb80\udf6d"
+      callbacks:
+        on_left: "toggle_mic_menu"
+        on_middle: "toggle_mute"
+        on_right: "exec cmd.exe /c start ms-settings:sound"
+      keybindings:
+        - keys: "ctrl+alt+shift+m"
+          action: "toggle_mute"
+  light_switch:
+    # type: "yasb.custom.CustomWidget"
+    type: "yasb.light_switch.LightSwitchWidget"
+    options:
+      # class_name : "light_switch"
       label: ""
+      service_options:
+        time_switch: "auto"
       keybindings:
         - keys: "ctrl+alt+shift+d"
-          action: "exec cmd /c pwsh -NoProfile -ExecutionPolicy Bypass -File C:/Users/8eber/.config/yasb/scripts/light-switch.ps1"
-  # notes:
-  #   type: "yasb.notes.NotesWidget"
-  #   options:
-  #     keybindings:
-  #       - keys: "alt+n"
-  #         action: "toggle_menu"
-  #     label: "<span>\udb82\udd0c</span> {count}"
-  #     label_alt: "{count} notes"
-  #     data_path: "~/Documents/my-notes.json"  # Optional: custom JSON file path
-  #     menu:
-  #       blur: true
-  #       round_corners: true
-  #       round_corners_type: "normal"
-  #       border_color: "System"
-  #       alignment: "right"
-  #       direction: "down"
-  #       offset_top: 6
-  #       offset_left: 0
-  #       max_title_size: 150
-  #       show_date_time: true
-  #     icons:
-  #       note: "\udb82\udd0c"
-  #       delete: "\ueab8"
-  #       copy: "\uebcc"
-  #     callbacks:
-  #       on_left: "toggle_menu"
-  #       on_middle: "do_nothing"
-  #       on_right: "do_nothing"
+          action: "toggle_light_switch"
+      run_after:
+        - "pwsh.exe -NoProfile -ExecutionPolicy Bypass -File \"C:/Users/8eber/.config/yasb/scripts/light-switch.ps1\" -isSystemLight {isSystemLight}"
+      callbacks:
+        on_left: "do_nothing"
+        on_middle: "do_nothing"
+        on_right: "do_nothing"
+  wallpaper:
+    type: "yasb.wallpapers.WallpapersWidget"
+    options:
+      label: ""
+      image_path: "C:\\users\\8eber\\OneDrive\\Pictures\\Wallpapers"
+      engine:
+        enabled: true
+        animation: "slide_top"
+      gallery:
+        enabled: true
+        blur: true
+        image_width: 220
+        image_per_page: 6
+        orientation: "landscape"
+        show_buttons: false
+        image_spacing: 8
+        lazy_load: true
+        lazy_load_fadein: 400
+        image_corner_radius: 12
+      keybindings:
+        - keys: "ctrl+alt+shift+w"
+          action: "toggle_gallery"
+      run_after: 
+        - "pwsh.exe -NoProfile -ExecutionPolicy Bypass -File C:/Users/8eber/.config/yasb/scripts/wallpaper-switch.ps1 {image}"
+    callbacks:
+      on_left: "do_nothing"
   power_menu:
     type: "yasb.power_menu.PowerMenuWidget"
     options:
@@ -148,9 +195,7 @@ widgets:
                 prefix: "?"
                 priority: 5
                 engine: "brave"
-                remove_engines: 
-                  # - "google"
-                  # - "bing"
+                remove_engines:
                   - "x"
                   - "youtube"
                   - "wikipedia"
@@ -223,7 +268,6 @@ widgets:
         popup:
             width: 720
             height: 480
-            # screen: "focus"
             blur: true
             round_corners: true
             round_corners_type: "normal"
@@ -232,6 +276,7 @@ widgets:
         keybindings:
             - keys: "alt+space"
               action: "toggle_quick_launch"
+              screen: "cursor"
         callbacks:
           on_left: "do_nothing"
   systray:
@@ -328,18 +373,33 @@ widgets:
   clock:
     type: "yasb.clock.ClockWidget"
     options:
-      label: "{%a, %d %b %I:%M %p}"
-      label_alt: "{%A, %d %B %Y %H:%M}"
+      label: "{%a, %d %b %I:%M %p} {icon}"
       timezones: []
+      icons:
+        clock_01 : "\udb85\udc3f"
+        clock_02 : "\udb85\udc40"
+        clock_03 : "\udb85\udc41"
+        clock_04 : "\udb85\udc42"
+        clock_05 : "\udb85\udc43"
+        clock_06 : "\udb85\udc44"
+        clock_07 : "\udb85\udc45"
+        clock_08 : "\udb85\udc46"
+        clock_09 : "\udb85\udc47"
+        clock_10 : "\udb85\udc48"
+        clock_11 : "\udb85\udc49"
+        clock_12 : "\udb85\udc4a"
+        clock_00 : "\udb85\udc4a"
       calendar: 
         blur: false
         round_corners: false
         alignment: "center"
         direction: "down"
         show_years: true 
+        show_holidays: true
       callbacks:
         on_left: "toggle_calendar"
-        on_right: "toggle_label"
+        on_middle: "do_nothing"
+        on_right: "do_nothing"
   glazewm_binding_mode:
       type: "glazewm.binding_mode.GlazewmBindingModeWidget"
       options:
@@ -376,37 +436,6 @@ widgets:
         enabled_populated: true
         size: 10
         hide_duplicates: true
-
-
-  volume:
-    type: "yasb.volume.VolumeWidget"
-    options:
-      label: "<span>{icon}</span> {level}"
-      volume_icons:
-        - "\ueee8"
-        - "\uf026"
-        - "\uf027"
-        - "\uf027"
-        - "\uf028"
-      callbacks:
-        on_left: "toggle_mute"
-        on_middle: "toggle_volume_menu"
-        on_right: "exec cmd.exe /c start ms-settings:sound"
-  microphone:
-    type: "yasb.microphone.MicrophoneWidget"
-    options:
-      label: "<span>{icon}</span> {level}"
-      icons:
-        normal: "\udb80\udf6c"
-        muted: "\udb80\udf6d"
-      callbacks:
-        on_left: "toggle_mute"
-        on_middle: "toggle_mic_menu"
-        on_right: "exec cmd.exe /c start ms-settings:sound"
-      keybindings:
-        - keys: "ctrl+alt+shift+m"
-          action: "toggle_mute"
-
   notifications:
     type: "yasb.notifications.NotificationsWidget"
     options:

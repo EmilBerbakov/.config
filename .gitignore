@@ -3,3 +3,8 @@ git/*
 yasb/yasb.log*
 scoop/*
 **/node_modules
+windows_terminal/base16-palette-windows-terminal.json
+windows_terminal/material-palette-windows-terminal.json
+yasb/accent-palette.css
+yasb/material-palette.css
+yasb/sunrise_and_sunset_data.json
