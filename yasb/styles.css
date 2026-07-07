@@ -1,7 +1,3 @@
-/* 
-This is default and very simple styles file for Yasb. 
-For more information about configuration options, please visit the Wiki https://github.com/amnweb/yasb/wiki
-*/
 :root {
 	--mauve: #cba6f7;
 	--red: #f38ba8;
@@ -428,6 +424,16 @@ For more information about configuration options, please visit the Wiki https://
 .glazewm-workspaces .ws-btn.empty:hover {
 	color: var(--text1);
 	background-color: var(--text4);
+}
+
+.systray-popup {
+	background-color: var(--blue);
+}
+
+.systray-popup .button {
+	background-color: transparent;
+	border: none;
+	padding: 4px;
 }
 
 .systray .unpinned-container {

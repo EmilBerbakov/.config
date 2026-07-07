@@ -2,7 +2,7 @@
 # For more information about configuration options, please visit the Wiki https://github.com/amnweb/yasb/wiki
 watch_stylesheet: true
 watch_config: true
-debug: false
+debug: true
 update_check: true # Enable automatic update check.
 bars:
   primary-bar:
@@ -44,6 +44,7 @@ bars:
       right:
       - "media"
       - "clock"
+      # - "notes"
       - "glazewm_binding_mode"
       - "glazewm_tiling_direction"
       - "microphone"
@@ -52,6 +53,34 @@ bars:
       - "systray"
       - "power_menu"
 widgets:
+  notes:
+    type: "yasb.notes.NotesWidget"
+    options:
+      label: "<span>\udb82\udd0c</span> {count}"
+      label_alt: "{count} notes"
+      data_path: "~/Documents/my-notes.json"  # Optional: custom JSON file path
+      # keybindings:
+      #   - keys: "alt+n"
+      #     action: "toggle_menu"
+      menu:
+        blur: true
+        round_corners: true
+        round_corners_type: "normal"
+        border_color: "System"
+        alignment: "right"
+        direction: "down"
+        offset_top: 6
+        offset_left: 0
+        max_title_size: 150
+        show_date_time: true
+      icons:
+        note: "\udb82\udd0c"
+        delete: "\ueab8"
+        copy: "\uebcc"
+      callbacks:
+        on_left: "toggle_menu"
+        on_middle: "do_nothing"
+        on_right: "toggle_label"
   power_menu:
     type: "yasb.power_menu.PowerMenuWidget"
     options:
@@ -188,7 +217,7 @@ widgets:
             border_color: "system"
             dark_mode: true
         # keybindings:
-        #     - keys: "alt+space"
+        #     - keys: "ctrl+space"
         #       action: "toggle_quick_launch"
   systray:
     type: "yasb.systray.SystrayWidget"
@@ -206,6 +235,9 @@ widgets:
       show_volume: false
       show_network: true
       use_hook: true
+      popup:
+        blur: true
+        round_corners: true
   media:
     type: "yasb.media.MediaWidget"
     options:
@@ -304,7 +336,7 @@ widgets:
         clock_09 : "\udb85\udc47"
         clock_10 : "\udb85\udc48"
         clock_11 : "\udb85\udc49"
-        clock_12 : "\udb85\udc4a"
+        clock_00 : "\udb85\udc4a"
       calendar: 
         blur: false
         round_corners: false
@@ -392,4 +424,4 @@ widgets:
       callbacks:
         on_left: "toggle_notification"
         on_right: "do_nothing"
-        on_middle: "toggle_label"
+        on_middle: "do_nothing"
