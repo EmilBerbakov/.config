@@ -215,7 +215,7 @@ window_rules:
   - commands: ['move --workspace 7']
     match:
       - window_process: { regex: 'ms-teams' }
-        window_title: { not_regex: 'Chat \||Teams \||Calendar \||OneDrive \| ' }
+        window_title: { not_regex: 'Chat \||Teams and Channels \||Calendar \||OneDrive \||Search \||Apps \|' }
   - commands: ['set-floating']
     match:
       - window_class: { equals: 'Outlook Host'}
