@@ -1,10 +1,10 @@
 [config]
-
+type = "SchemeVibrant"
+source_color_index = 0
 [templates]
 css = { input_path = '~/.config/matugen/templates/material-palette.css', output_path = '~/.config/yasb/material-palette.css'}
 yaml = { input_path = '~/.config/matugen/templates/material-palette.yaml', output_path = '~/.config/glazewm/config.yaml', post_hook = "glazewm.exe command wm-reload-config" }
 windows_term_material = { input_path = '~/.config/matugen/templates/material-palette-windows-terminal.json', output_path = '~/.config/windows_terminal/material-palette-windows-terminal.json', post_hook = 'pwsh -NoProfile -ExecutionPolicy Bypass -File C:/Users/8eber/.config/windows_terminal/post_hook_material.ps1' }
-
 windows_term_base16 = { input_path = '~/.config/matugen/templates/base16-palette-windows-terminal.json', output_path = '~/.config/windows_terminal/base16-palette-windows-terminal.json', post_hook = 'pwsh -NoProfile -ExecutionPolicy Bypass -File C:/Users/8eber/.config/windows_terminal/post_hook_base16.ps1' }
 
 material_nvim = { input_path = '~/.config/matugen/templates/material-nvim.lua', output_path = '~/AppData/Local/nvim/lua/generated_colors.lua'}

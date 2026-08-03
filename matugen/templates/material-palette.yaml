@@ -1,8 +1,8 @@
-
+#STOP: edit this in the matugen template
 general:
-  # Startup Yasb
+  # Startup Thide
   startup_commands: ['shell-exec --hide-window thide start']
-  #Kill Yasb when Glaze is closed
+  #Kill thide when Glaze is closed
   shutdown_commands: ['shell-exec --hide-window thide stop']
 
   # Commands to run after the WM config is reloaded.
@@ -171,14 +171,12 @@ window_rules:
   # move Steam and Epic launchers to main workspace 
     match:
       - window_process: { regex: 'steam|Epic' }
-  # move Unreal Engine games to main workspace
-      - window_class: { equals: 'UnrealWindow' }
-  # same but for Unity games
-      - window_class: { equals: 'UnityWndClass' }
-  # Marathon (and presumably Destiny)
   - commands: ['move --workspace 1', 'set-fullscreen', 'wm-enable-binding-mode --name pause']
     match:
+  # Marathon (and presumably Destiny)
       - window_class: { equals: 'Tiger D3D Window' }
+  # Unreal and Unity games
+      - window_class: { regex: 'UnrealWindow|UnityWndClass' }
   - commands: ['move --workspace 2']
     match:
       - window_title: { regex: 'Destiny Item Manager - DIM -.*?' }

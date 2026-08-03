@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=C:/Users/8eber/OpenSourceProjects/yasb/schema.json
 watch_stylesheet: true
 watch_config: true
 debug: true
@@ -29,23 +30,23 @@ bars:
       height: 32
     widgets:
       left:
-      - "taskbar"
-      - "quick_launch"
-      - "wallpaper"
+        - "taskbar"
+        - "quick_launch"
+        - "wallpaper"
       # - "active_window"
       center:
-      - "glazewm_workspaces"
+        - "glazewm_workspaces"
       right:
-      - "light_switch"
-      - "glazewm_grouper"
-      # - "glazewm_binding_mode"
-      # - "glazewm_tiling_direction"
-      # - "media"
-      - "clock"
-      - "audio_grouper"
-      - "notifications"
-      - "systray"
-      - "power_menu"
+        - "light_switch"
+        - "glazewm_grouper"
+        # - "glazewm_binding_mode"
+        # - "glazewm_tiling_direction"
+        # - "media"
+        - "clock"
+        - "audio_grouper"
+        - "notifications"
+        - "systray"
+        - "power_menu"
 widgets:
   audio_grouper:
     type: "yasb.grouper.GrouperWidget"
@@ -55,7 +56,7 @@ widgets:
         - "microphone"
         - "volume"
       collapse_options:
-          enabled: false
+        enabled: false
   glazewm_grouper:
     type: "yasb.grouper.GrouperWidget"
     options:
@@ -68,16 +69,23 @@ widgets:
     type: "yasb.volume.VolumeWidget"
     options:
       label: "<span>{icon}</span> {level}"
-      volume_icons:
-        - "\ueee8"
-        - "\uf026"
-        - "\uf027"
-        - "\uf027"
-        - "\uf028"
+      icons:
+        "muted": "\ueee8"
+        "10": "\uf026"
+        "30": "\uf027"
+        "60": "\uf027"
+        "100": "\uf028"
+      audio_menu:
+        blur: true
+        round_corners: true
+        show_apps: true
       callbacks:
         on_left: "toggle_volume_menu"
         on_middle: "toggle_mute"
         on_right: "exec cmd.exe /c start ms-settings:sound"
+      # keybindings:
+      #   - keys: "ctrl+alt+shift+v"
+      #     action: "toggle_volume_menu"
   microphone:
     type: "yasb.microphone.MicrophoneWidget"
     options:
@@ -89,22 +97,22 @@ widgets:
         on_left: "toggle_mic_menu"
         on_middle: "toggle_mute"
         on_right: "exec cmd.exe /c start ms-settings:sound"
-      keybindings:
-        - keys: "ctrl+alt+shift+m"
-          action: "toggle_mute"
+      # keybindings:
+      #   - keys: "ctrl+alt+shift+m"
+      #     action: "toggle_mute"
   light_switch:
     # type: "yasb.custom.CustomWidget"
     type: "yasb.light_switch.LightSwitchWidget"
     options:
       # class_name : "light_switch"
       label: ""
-      service_options:
-        time_switch: "auto"
+      # service_options:
+      #   time_switch: "auto"
       keybindings:
         - keys: "ctrl+alt+shift+d"
           action: "toggle_light_switch"
       run_after:
-        - "pwsh.exe -NoProfile -ExecutionPolicy Bypass -File \"C:/Users/8eber/.config/yasb/scripts/light-switch.ps1\" -isSystemLight {isSystemLight}"
+        - 'pwsh.exe -NoProfile -ExecutionPolicy Bypass -File "C:/Users/8eber/.config/yasb/scripts/light-switch.ps1" -isSystemLight {isSystemLight}'
       callbacks:
         on_left: "do_nothing"
         on_middle: "do_nothing"
@@ -131,15 +139,17 @@ widgets:
       keybindings:
         - keys: "ctrl+alt+shift+w"
           action: "toggle_gallery"
-      run_after: 
+      run_after:
         - "pwsh.exe -NoProfile -ExecutionPolicy Bypass -File C:/Users/8eber/.config/yasb/scripts/wallpaper-switch.ps1 {image}"
     callbacks:
       on_left: "do_nothing"
+      on_middle: "do_nothing"
+      on_right: "do_nothing"
   power_menu:
     type: "yasb.power_menu.PowerMenuWidget"
     options:
       keybindings:
-        - keys: "alt+x"
+        - keys: "ctrl+alt+shift+x"
           action: "toggle_power_menu"
       label: "\uf011"
       uptime: true
@@ -149,7 +159,7 @@ widgets:
       button_row: 3 # Number of buttons in a row, min 1 max 5
       buttons:
         lock: ["\uea75", "Lock"]
-        sleep: ["\u23fe","Sleep"]
+        sleep: ["\u23fe", "Sleep"]
         signout: ["\udb80\udf43", "Sign out"]
         shutdown: ["\uf011", "Shut Down"]
         restart: ["\uead2", "Restart"]
@@ -158,127 +168,129 @@ widgets:
   quick_launch:
     type: "yasb.quick_launch.QuickLaunchWidget"
     options:
-        label: ""
-        search_placeholder: "Search applications..."
-        max_results: 50
-        show_icons: true
-        icon_size: 32
-        providers:
-            apps:
-                enabled: true
-                prefix: "*"
-                priority: 0
-                show_recent: true
-                max_recent: 5
-                show_description: true
-            calculator:
-                enabled: true
-                prefix: "="
-                priority: 1
-            clipboard_history:
-                enabled: true
-                prefix: "cb"
-                priority: 2
-                max_items: 30
-            currency:
-                enabled: true
-                prefix: "$"
-                priority: 3
-            bookmarks:
-                enabled: true
-                prefix: "*"
-                priority: 4
-                browser: "all"
-                profile: "Default"
-            web_search:
-                enabled: true
-                prefix: "?"
-                priority: 5
-                engine: "brave"
-                remove_engines:
-                  - "x"
-                  - "youtube"
-                  - "wikipedia"
-                  - "github"
-                  - "reddit"
-                  - "stackoverflow"
-            system_commands:
-                enabled: true
-                prefix: ">"
-                priority: 6
-            settings:
-                enabled: true
-                prefix: "@"
-                priority: 7
-            kill_process:
-                enabled: true
-                prefix: "!"
-                priority: 8
-            port_viewer:
-                enabled: true
-                prefix: "pv"
-                priority: 9
-                tcp_listening_only: true
-                include_established: false
-            file_search:
-                enabled: true
-                prefix: "/"
-                priority: 10
-                backend: "auto"
-                show_path: true
-            unit_converter:
-                enabled: true
-                prefix: "~"
-                priority: 11
-            emoji:
-                enabled: true
-                prefix: ":"
-                priority: 12
-            color:
-                enabled: true
-                prefix: "c:"
-                priority: 13
-            world_clock:
-                enabled: true
-                prefix: "tz"
-                priority: 14
-            snippets:
-                enabled: true
-                prefix: ";"
-                priority: 15
-                type_delay: 200
-            hacker_news:
-                enabled: true
-                prefix: "hn"
-                priority: 16
-                cache_ttl: 300
-                max_items: 30
-            dev_tools:
-                enabled: true
-                prefix: "dev"
-                priority: 17
-            ip_info:
-                enabled: true
-                prefix: "ip"
-                priority: 18
-            vscode:
-                enabled: true
-                prefix: "vsc"
-                priority: 19
-        popup:
-            width: 720
-            height: 480
-            blur: true
-            round_corners: true
-            round_corners_type: "normal"
-            border_color: "system"
-            dark_mode: true
-        keybindings:
-            - keys: "alt+space"
-              action: "toggle_quick_launch"
-              screen: "cursor"
-        callbacks:
-          on_left: "do_nothing"
+      label: ""
+      search_placeholder: "Search applications..."
+      max_results: 50
+      show_icons: true
+      icon_size: 32
+      providers:
+        apps:
+          enabled: true
+          prefix: "*"
+          priority: 0
+          show_recent: true
+          max_recent: 5
+          show_description: true
+        calculator:
+          enabled: true
+          prefix: "="
+          priority: 1
+        clipboard_history:
+          enabled: true
+          prefix: "cb"
+          priority: 2
+          max_items: 30
+        currency:
+          enabled: true
+          prefix: "$"
+          priority: 3
+        bookmarks:
+          enabled: true
+          prefix: "*"
+          priority: 4
+          browser: "all"
+          profile: "Default"
+        web_search:
+          enabled: true
+          prefix: "?"
+          priority: 5
+          engine: "brave"
+          remove_engines:
+            - "x"
+            - "youtube"
+            - "wikipedia"
+            - "github"
+            - "reddit"
+            - "stackoverflow"
+            - "bing"
+            - "duckduckgo"
+        system_commands:
+          enabled: true
+          prefix: ">"
+          priority: 6
+        settings:
+          enabled: true
+          prefix: "@"
+          priority: 7
+        kill_process:
+          enabled: true
+          prefix: "!"
+          priority: 8
+        port_viewer:
+          enabled: true
+          prefix: "pv"
+          priority: 9
+          tcp_listening_only: true
+          include_established: false
+        file_search:
+          enabled: true
+          prefix: "/"
+          priority: 10
+          backend: "auto"
+          show_path: true
+        unit_converter:
+          enabled: true
+          prefix: "~"
+          priority: 11
+        emoji:
+          enabled: true
+          prefix: ":"
+          priority: 12
+        color:
+          enabled: true
+          prefix: "c:"
+          priority: 13
+        world_clock:
+          enabled: true
+          prefix: "tz"
+          priority: 14
+        snippets:
+          enabled: true
+          prefix: ";"
+          priority: 15
+          type_delay: 200
+        hacker_news:
+          enabled: true
+          prefix: "hn"
+          priority: 16
+          cache_ttl: 300
+          max_items: 30
+        dev_tools:
+          enabled: true
+          prefix: "dev"
+          priority: 17
+        ip_info:
+          enabled: true
+          prefix: "ip"
+          priority: 18
+        vscode:
+          enabled: true
+          prefix: "vsc"
+          priority: 19
+      popup:
+        width: 720
+        height: 480
+        blur: true
+        round_corners: true
+        round_corners_type: "normal"
+        border_color: "system"
+        dark_mode: true
+      keybindings:
+        - keys: "alt+space"
+          action: "toggle_quick_launch"
+          screen: "cursor"
+      callbacks:
+        on_left: "do_nothing"
   systray:
     type: "yasb.systray.SystrayWidget"
     options:
@@ -332,7 +344,7 @@ widgets:
       scrolling_label:
         enabled: true
         update_interval_ms: 50
-        style: "left"  # can be "left", "right", "bounce", "bounce-ease"
+        style: "left" # can be "left", "right", "bounce", "bounce-ease"
         separator: " | "
         label_padding: 1
       callbacks:
@@ -376,49 +388,49 @@ widgets:
       label: "{%a, %d %b %I:%M %p} {icon}"
       timezones: []
       icons:
-        clock_01 : "\udb85\udc3f"
-        clock_02 : "\udb85\udc40"
-        clock_03 : "\udb85\udc41"
-        clock_04 : "\udb85\udc42"
-        clock_05 : "\udb85\udc43"
-        clock_06 : "\udb85\udc44"
-        clock_07 : "\udb85\udc45"
-        clock_08 : "\udb85\udc46"
-        clock_09 : "\udb85\udc47"
-        clock_10 : "\udb85\udc48"
-        clock_11 : "\udb85\udc49"
-        clock_12 : "\udb85\udc4a"
-        clock_00 : "\udb85\udc4a"
-      calendar: 
+        clock_01: "\udb85\udc3f"
+        clock_02: "\udb85\udc40"
+        clock_03: "\udb85\udc41"
+        clock_04: "\udb85\udc42"
+        clock_05: "\udb85\udc43"
+        clock_06: "\udb85\udc44"
+        clock_07: "\udb85\udc45"
+        clock_08: "\udb85\udc46"
+        clock_09: "\udb85\udc47"
+        clock_10: "\udb85\udc48"
+        clock_11: "\udb85\udc49"
+        clock_12: "\udb85\udc4a"
+        clock_00: "\udb85\udc4a"
+      calendar:
         blur: false
         round_corners: false
         alignment: "center"
         direction: "down"
-        show_years: true 
+        show_years: true
         show_holidays: true
       callbacks:
         on_left: "toggle_calendar"
         on_middle: "do_nothing"
         on_right: "do_nothing"
   glazewm_binding_mode:
-      type: "glazewm.binding_mode.GlazewmBindingModeWidget"
-      options:
-        label: '<span>{icon}</span>'
-        label_alt: '<span>{icon}</span> {binding_mode}'
-        icons:
-          resize: "\uf047"
-          pause: "\uf28c"
-        binding_modes_to_cycle_through: [
+    type: "glazewm.binding_mode.GlazewmBindingModeWidget"
+    options:
+      label: "<span>{icon}</span>"
+      label_alt: "<span>{icon}</span> {binding_mode}"
+      icons:
+        resize: "\uf047"
+        pause: "\uf28c"
+      binding_modes_to_cycle_through: [
           "none", # none handles if no binding mode is active
           "resize",
-          "pause"
+          "pause",
         ]
-        callbacks:
-          on_left: "next_binding_mode"
-          on_middle: "toggle_label"
-          on_right: "disable_binding_mode"
+      callbacks:
+        on_left: "next_binding_mode"
+        on_middle: "toggle_label"
+        on_right: "disable_binding_mode"
 
-      # By default binding mode names are fetched from GlazeWM and "display_name" option takes priority over "name".
+    # By default binding mode names are fetched from GlazeWM and "display_name" option takes priority over "name".
   glazewm_tiling_direction:
     type: "glazewm.tiling_direction.GlazewmTilingDirectionWidget"
     options:
