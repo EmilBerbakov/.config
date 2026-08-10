@@ -13,3 +13,5 @@ Copy this to HOMEPATH
 Speed up glazewm and yasb on startup by creating scheduled tasks that trigger on login.
 glazewm has to be done by hand, but yasb has a cli:
 ```yasbc enable-autostart --task```
+
+An easier way to do this is to first generate the yasb task, and then add GlazeWM to the trigger to resolve first

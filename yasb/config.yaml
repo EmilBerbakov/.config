@@ -106,8 +106,8 @@ widgets:
     options:
       # class_name : "light_switch"
       label: ""
-      # service_options:
-      #   time_switch: "auto"
+      service_options:
+        time_switch: "auto"
       keybindings:
         - keys: "ctrl+alt+shift+d"
           action: "toggle_light_switch"
