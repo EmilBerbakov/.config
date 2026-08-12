@@ -7,6 +7,7 @@ $sysVal = Get-ItemPropertyValue -Path $path -Name $sys
 $appVal = Get-ItemPropertyValue -Path $path -Name $app
 
 $mode = ($appVal -eq 1) ? "light" : "dark"
-$prefer = ($mode) ? "darkness" : "lightness"
+# $prefer = ($mode) ? "darkness" : "lightness"
 
-matugen image $Wallpaper -m $mode -c C:/Users/8eber/.config/matugen/config.toml --prefer $prefer
+# matugen image $Wallpaper -m $mode -c C:/Users/8eber/.config/matugen/config.toml --prefer $prefer
+matugen image $wallpaper -m $mode -c C:/Users/8eber/.config/matugen/config.toml

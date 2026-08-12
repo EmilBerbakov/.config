@@ -12,12 +12,12 @@ return {
 	base07 = '{{colors.inverse_on_surface.default.hex}}', -- Light Background
 
 	-- Accents mapped to syntax highlighting
-	base08 = '{{colors.error.default.hex}}',       -- Variables, XML Tags (Typically Red)
-	base09 = '{{colors.tertiary_fixed_dim.default.hex}}', -- Integers, Constants (Typically Orange)
-	base0A = '{{colors.tertiary.default.hex}}',    -- Classes, Search Text (Typically Yellow)
-	base0B = '{{colors.primary.default.hex}}',     -- Strings, Markup Code (Typically Green)
-	base0C = '{{colors.inverse_primary.default.hex}}', -- Regular Expressions (Typically Cyan)
-	base0D = '{{colors.primary.default.hex}}',     -- Functions, Methods (Typically Blue)
-	base0E = '{{colors.secondary.default.hex}}',   -- Keywords, Storage (Typically Purple)
-	base0F = '{{colors.outline_variant.default.hex}}', -- Deprecated (Typically Brown/Dark Red)
+	base08 = '{{colors.error.default.hex | auto_lightness: 15}}',       -- Variables, XML Tags (Typically Red)
+	base09 = '{{colors.tertiary_fixed_dim.default.hex | auto_lightness: 10}}', -- Integers, Constants (Typically Orange)
+	base0A = '{{colors.tertiary.default.hex | auto_lightness: 10}}',    -- Classes, Search Text (Typically Yellow)
+	base0B = '{{colors.primary.default.hex | auto_lightness: -5}}',     -- Strings, Markup Code (Typically Green)
+	base0C = '{{colors.inverse_primary.default.hex}}',                  -- Regular Expressions (Typically Cyan)
+	base0D = '{{colors.primary.default.hex | auto_lightness: -5}}',     -- Functions, Methods (Typically Blue)
+	base0E = '{{colors.secondary.default.hex | auto_lightness: 10}}',   -- Keywords, Storage (Typically Purple)
+	base0F = '{{colors.outline_variant.default.hex}}',                  -- Deprecated (Typically Brown/Dark Red)
 }
