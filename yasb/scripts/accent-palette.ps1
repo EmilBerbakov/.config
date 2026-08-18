@@ -1,5 +1,13 @@
 param([string] $Wallpaper)
 
+$sysVal = Get-ItemPropertyValue -Path $path -Name $sys
+$appVal = Get-ItemPropertyValue -Path $path -Name $app
+
+Set-ItemProperty -Path $path -Name $sys -Value $( 1-$sysVal)
+Set-ItemProperty -Path $path -Name $app -Value $( 1-$appVal)
+
+$isLightMode = 1-$sysVal -eq 1
+
 Add-Type @"
 using System;
 using System.Runtime.InteropServices;
@@ -36,6 +44,9 @@ if ($AccentPalette) {
         $hexColor = "#{0:X2}{1:X2}{2:X2}" -f $r, $g, $b
         $cssContent += " --color$($i): $($hexColor); "
     }
+    $cssContent += "--bg: #$(($isLightMode) ? 'F3F3F3' : '202020' );"
+    $cssContent += "--fg: #$(($isLightMode) ? '202020' : 'F3F3F3' );"
     $cssContent += "}"
-    Set-Content -Path '~/.config/yasb/accent-palette.css' -Value $cssContent
+    Set-Content -Path 'path/to/accent-palette.css' -Value $cssContent
+
 }

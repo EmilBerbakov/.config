@@ -1,8 +1,8 @@
-# yaml-language-server: $schema=C:/Users/8eber/OpenSourceProjects/yasb/schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/amnweb/yasb/main/schema.json
 watch_stylesheet: true
 watch_config: true
-debug: true
-update_check: true # Enable automatic update check.
+debug: false
+update_check: true
 glazewm:
   start_command: "glazewm.exe start"
 bars:
@@ -33,13 +33,10 @@ bars:
         - "taskbar"
         - "quick_launch"
         - "wallpaper"
-        # - "active_window"
       center:
         - "glazewm_workspaces"
       right:
-        - "light_switch"
         - "glazewm_grouper"
-        # - "media"
         - "clock"
         - "audio_grouper"
         - "notifications"
@@ -81,9 +78,6 @@ widgets:
         on_left: "toggle_volume_menu"
         on_middle: "toggle_mute"
         on_right: "exec cmd.exe /c start ms-settings:sound"
-      # keybindings:
-      #   - keys: "ctrl+alt+shift+v"
-      #     action: "toggle_volume_menu"
   microphone:
     type: "yasb.microphone.MicrophoneWidget"
     options:
@@ -95,31 +89,11 @@ widgets:
         on_left: "toggle_mic_menu"
         on_middle: "toggle_mute"
         on_right: "exec cmd.exe /c start ms-settings:sound"
-      # keybindings:
-      #   - keys: "ctrl+alt+shift+m"
-      #     action: "toggle_mute"
-  light_switch:
-    # type: "yasb.custom.CustomWidget"
-    type: "yasb.light_switch.LightSwitchWidget"
-    options:
-      # class_name : "light_switch"
-      label: ""
-      service_options:
-        time_switch: "auto"
-      keybindings:
-        - keys: "ctrl+alt+shift+d"
-          action: "toggle_light_switch"
-      run_after:
-        - 'pwsh.exe -NoProfile -ExecutionPolicy Bypass -File "C:/Users/8eber/.config/yasb/scripts/light-switch.ps1" -isSystemLight {isSystemLight}'
-      callbacks:
-        on_left: "do_nothing"
-        on_middle: "do_nothing"
-        on_right: "do_nothing"
   wallpaper:
     type: "yasb.wallpapers.WallpapersWidget"
     options:
       label: ""
-      image_path: "C:\\users\\8eber\\OneDrive\\Pictures\\Wallpapers"
+      image_path: "path\\to\\wallpaper\\directory"
       engine:
         enabled: true
         animation: "slide_top"
@@ -138,7 +112,7 @@ widgets:
         - keys: "ctrl+alt+shift+w"
           action: "toggle_gallery"
       run_after:
-        - "pwsh.exe -NoProfile -ExecutionPolicy Bypass -File C:/Users/8eber/.config/yasb/scripts/wallpaper-switch.ps1 {image}"
+        - "pwsh.exe -NoProfile -ExecutionPolicy Bypass -File 'path/to/wallpaper-switch.ps1' {image}"
     callbacks:
       on_left: "do_nothing"
       on_middle: "do_nothing"
@@ -299,61 +273,6 @@ widgets:
       show_network: true
       use_hook: true
       show_in_popup: true
-  media:
-    type: "yasb.media.MediaWidget"
-    options:
-      label: "{title}"
-      label_alt: "{artist} - {title}"
-      max_field_size:
-        label: 18
-        label_alt: 24
-      show_thumbnail: true
-      controls_only: false
-      controls_left: true
-      controls_hide: true
-      hide_empty: true
-      thumbnail_alpha: 100
-      thumbnail_padding: 16
-      thumbnail_corner_radius: 0
-      thumbnail_edge_fade: true
-      icons:
-        prev_track: "\udb81\udcae"
-        next_track: "\udb81\udcad"
-        play: "\udb81\udc0a"
-        pause: "\udb80\udfe4"
-      media_menu:
-        blur: false
-        round_corners: false
-        alignment: "right"
-        direction: "down"
-        offset_top: 6
-        offset_left: 0
-        thumbnail_corner_radius: 4
-        thumbnail_size: 100
-        max_title_size: 80
-        max_artist_size: 20
-        show_source: true
-      scrolling_label:
-        enabled: true
-        update_interval_ms: 50
-        style: "left" # can be "left", "right", "bounce", "bounce-ease"
-        separator: " | "
-        label_padding: 1
-      callbacks:
-        on_left: "toggle_media_menu"
-        on_middle: "do_nothing"
-        on_right: "toggle_label"
-  active_window:
-    type: "yasb.active_window.ActiveWindowWidget"
-    options:
-      label: "{win[title]}"
-      label_alt: "[class_name='{win[class_name]}' exe='{win[process][name]}' hwnd={win[hwnd]}]"
-      label_no_window: ""
-      label_icon: false
-      label_icon_size: 14
-      max_length: 60
-      max_length_ellipsis: "..."
-      monitor_exclusive: true
   taskbar:
     type: "yasb.taskbar.TaskbarWidget"
     options:
@@ -422,7 +341,6 @@ widgets:
         on_middle: "toggle_label"
         on_right: "disable_binding_mode"
 
-    # By default binding mode names are fetched from GlazeWM and "display_name" option takes priority over "name".
   glazewm_tiling_direction:
     type: "glazewm.tiling_direction.GlazewmTilingDirectionWidget"
     options:
@@ -434,7 +352,6 @@ widgets:
       hide_if_offline: true
       active_populated_label: "\uebb4 {name}"
       active_empty_label: "\uebb5 {name}"
-      # Want to make this work, but the styling in terms of border-radius and font-size seems to get messed up; probably because .label and .app-icons
       app_icons:
         enabled_active: false
         enabled_populated: true
