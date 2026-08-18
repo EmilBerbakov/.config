@@ -1,0 +1,190 @@
+local wezterm = require("wezterm")
+local config = wezterm.config_builder()
+config.window_close_confirmation = "NeverPrompt"
+config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 2000 }
+
+local colorscheme
+
+local path = (os.getenv("WEZTERM_CONFIG_DIR") or os.getenv("HOME") or os.getenv("USERPROFILE"))
+    .. "\\wezterm_colorscheme"
+path = path:gsub("\\\\", "/")
+local file = io.open(path, "r")
+if file == nil then
+	file = io.open(path, "w+")
+	assert(file)
+	file:write("Catppuccin Mocha")
+end
+file = io.open(path, "r")
+assert(file)
+colorscheme = file:read("*a")
+file:close()
+config.color_scheme = colorscheme
+wezterm.add_to_config_reload_watch_list(path)
+
+config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
+
+-- wezterm.on("window-config-reloaded", function(window, _)
+-- 	local appearance = window:get_appearance()
+--
+-- 	local file = io.open(path, "w")
+-- 	assert(file)
+-- 	if appearance:find("Dark") then
+-- 		file:write("Catppuccin Mocha")
+-- 	else
+-- 		file:write("Catppuccin Latte")
+-- 	end
+-- 	file:close()
+-- end)
+
+-- local function theme_switch(appearance)
+-- 	if appearance:find("Dark") then
+-- 		return "Catppuccin Mocha"
+-- 	else
+-- 		return "Catppuccin Latte"
+-- 	end
+-- end
+--
+-- config.color_scheme = theme_switch(wezterm.gui.get_appearance())
+-- local color_theme = wezterm.color.get_builtin_schemes()[theme_switch(wezterm.gui.get_appearance())]
+local color_theme = wezterm.color.get_builtin_schemes()[colorscheme]
+config.tab_max_width = 100
+
+local os_type = wezterm.target_triple
+local is_windows = os_type == "x86_64-pc-windows-msvc"
+
+local use_fancy_titlebar = false
+config.use_fancy_tab_bar = use_fancy_titlebar
+config.tab_bar_at_bottom = not use_fancy_titlebar
+
+--NOTE: This does not work
+
+function Toggle_Fancy_Titlebar(swap)
+	if swap == nil then
+		swap = true
+	end
+	use_fancy_titlebar = swap and not use_fancy_titlebar
+	if use_fancy_titlebar then
+		config.window_frame = { active_titlebar_bg = color_theme.background }
+		config.window_decorations = "RESIZE | INTEGRATED_BUTTONS | TITLE"
+		config.integrated_title_button_style = "Windows"
+		wezterm.on("format-tab-title", function(tab)
+			return {
+				{ Background = { Color = color_theme.background } },
+				{ Text = "[" .. tab.tab_index + 1 .. "] " .. tab.active_pane.title },
+			}
+		end)
+	else
+		config.colors = {
+			tab_bar = {
+				background = color_theme.background,
+			},
+		}
+	end
+end
+
+Toggle_Fancy_Titlebar(false)
+wezterm.on("update-status", function(window)
+	window:set_left_status(wezterm.format({
+		{ Background = { Color = color_theme.foreground } },
+		{ Foreground = { Color = color_theme.background } },
+		{ Attribute = { Intensity = "Bold" } },
+		{ Text = window:leader_is_active() and " LEADER " or "" },
+	}))
+end)
+
+config.keys = {
+	{
+		key = "x",
+		mods = "LEADER",
+		action = wezterm.action_callback(function(window, pane)
+			local cwd = pane:get_current_working_dir().file_path
+			if not cwd then
+				window:toast_notification("Error", "Couuld not get CWD for pane", nil, 3000)
+				return
+			end
+			--NOTE: this doesn't work in wsl; looks like there's some wsl-specific stuff for WezTerm that I need to look into to make this work
+			local actual_path = is_windows and string.sub(cwd, 2) or cwd
+			wezterm.log_info(actual_path)
+			local cmd = {
+				"git",
+				"-C",
+				actual_path,
+				"config",
+				"--get",
+				"remote.origin.url",
+			}
+
+			local success, stdout, _ = wezterm.run_child_process(cmd)
+
+			if not success then
+				window:toast_notification("Error", "Could not get git remote url", nil, 3000)
+				return
+			end
+
+			local url = stdout:match("^%s*(.-)%s*$")
+			if not url or url == "" then
+				window:toast_notification("Error", "No git origin found", nil, 3000)
+				return
+			end
+
+			wezterm.open_with(url)
+		end),
+	},
+	{
+		key = "w",
+		mods = "LEADER",
+		action = wezterm.action.CloseCurrentTab({ confirm = false }),
+	},
+	{
+		key = "t",
+		mods = "LEADER",
+		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
+	},
+	{
+		key = "v",
+		mods = "LEADER",
+		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+	},
+}
+
+for i = 1, 9 do
+	table.insert(config.keys, {
+		key = tostring(i),
+		mods = "LEADER",
+		action = wezterm.action.ActivateTab(i - 1),
+	})
+	--NOTE: this isn't actually disabling the ctrl+shift+num default keystrokes...
+
+	-- table.insert(config.keys, {
+	-- 	key = tostring(i),
+	-- 	mods = "CTRL|SHIFT",
+	-- 	action = wezterm.action.DisableDefaultAssignment,
+	-- })
+end
+
+if is_windows then
+	local _, stdout, _ = wezterm.run_child_process({ "cmd.exe", "ver" })
+	local _, _, build, _ = stdout:match("Version ([0-9]+)%.([0-9]+)%.([0-9]+)%.([0-9]+)")
+	local is_windows_11 = tonumber(build) >= 22000
+	if is_windows_11 and not use_fancy_titlebar then
+		--NOTE: Can't combine this with window_decorations: https://github.com/wezterm/wezterm/issues/3598
+		-- config.window_background_opacity = 0.5
+		-- config.win32_system_backdrop = "Acrylic"
+		config.window_decorations = "RESIZE"
+		-- NOTE: I was under the impression that these settings would make it more performant, but that doesn't seem to be the case. If anything, it was much worse
+		config.webgpu_power_preference = "HighPerformance"
+		config.front_end = "OpenGL"
+		config.prefer_egl = true
+	end
+	config.default_prog = { "pwsh.exe", "-NoLogo" }
+
+	if os.getenv("GLAZEWM_CONFIG_PATH") == nil or os.getenv("GLAZEWM_CONFIG_PATH") == "" then
+		local mux = wezterm.mux
+		wezterm.on("gui-startup", function(cmd)
+			local _, _, window = mux.spawn_window(cmd or {})
+			window:gui_window():maximize()
+		end)
+	end
+end
+
+return config

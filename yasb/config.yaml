@@ -33,14 +33,12 @@ bars:
         - "taskbar"
         - "quick_launch"
         - "wallpaper"
-      # - "active_window"
+        # - "active_window"
       center:
         - "glazewm_workspaces"
       right:
         - "light_switch"
         - "glazewm_grouper"
-        # - "glazewm_binding_mode"
-        # - "glazewm_tiling_direction"
         # - "media"
         - "clock"
         - "audio_grouper"
@@ -183,20 +181,17 @@ widgets:
           show_description: true
         calculator:
           enabled: true
-          prefix: "="
           priority: 1
         clipboard_history:
           enabled: true
-          prefix: "cb"
           priority: 2
           max_items: 30
         currency:
           enabled: true
-          prefix: "$"
           priority: 3
         bookmarks:
           enabled: true
-          prefix: "*"
+          prefix: "bm"
           priority: 4
           browser: "all"
           profile: "Default"
@@ -216,19 +211,15 @@ widgets:
             - "duckduckgo"
         system_commands:
           enabled: true
-          prefix: ">"
           priority: 6
         settings:
           enabled: true
-          prefix: "@"
           priority: 7
         kill_process:
           enabled: true
-          prefix: "!"
           priority: 8
         port_viewer:
           enabled: true
-          prefix: "pv"
           priority: 9
           tcp_listening_only: true
           include_established: false
@@ -240,43 +231,44 @@ widgets:
           show_path: true
         unit_converter:
           enabled: true
-          prefix: "~"
           priority: 11
         emoji:
           enabled: true
-          prefix: ":"
           priority: 12
         color:
           enabled: true
-          prefix: "c:"
           priority: 13
         world_clock:
           enabled: true
-          prefix: "tz"
           priority: 14
         snippets:
           enabled: true
-          prefix: ";"
           priority: 15
           type_delay: 200
         hacker_news:
-          enabled: true
-          prefix: "hn"
+          enabled: false
           priority: 16
           cache_ttl: 300
           max_items: 30
         dev_tools:
           enabled: true
-          prefix: "dev"
           priority: 17
         ip_info:
           enabled: true
-          prefix: "ip"
           priority: 18
         vscode:
-          enabled: true
-          prefix: "vsc"
+          enabled: false
           priority: 19
+        windows_terminal:
+          enabled: true
+          priority: 20
+        wsl:
+          enabled: true
+          priority: 21
+          show_online: true
+        ssh:
+          enabled: true
+          priority: 22
       popup:
         width: 720
         height: 480
