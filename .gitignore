@@ -1,6 +1,5 @@
-wezterm/wezterm_colorscheme
+wezterm/color/*
 git/*
-yasb/yasb.log*
 scoop/*
 **/node_modules
 windows_terminal/base16-palette-windows-terminal.json
@@ -9,3 +8,5 @@ yasb/accent-palette.css
 yasb/material-palette.css
 yasb/sunrise_and_sunset_data.json
 glazewm/config.yaml
+**/.env
+**/*.log
