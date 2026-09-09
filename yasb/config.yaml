@@ -110,8 +110,8 @@ widgets:
       keybindings:
         - keys: "ctrl+alt+shift+d"
           action: "toggle_light_switch"
-      run_after:
-        - 'pwsh.exe -NoProfile -ExecutionPolicy Bypass -File "C:/Users/8eber/.config/yasb/scripts/light-switch.ps1" -isSystemLight {isSystemLight}'
+      # run_after:
+      #   - 'pwsh.exe -NoProfile -ExecutionPolicy Bypass -File "C:/Users/8eber/.config/yasb/scripts/light-switch.ps1" -isSystemLight {isSystemLight}'
       callbacks:
         on_left: "do_nothing"
         on_middle: "do_nothing"
@@ -134,8 +134,8 @@ widgets:
         - keys: "ctrl+alt+shift+w"
           action: "toggle_gallery"
           screen: "cursor"
-      run_after:
-        - "pwsh.exe -NoProfile -ExecutionPolicy Bypass -File C:/Users/8eber/.config/yasb/scripts/wallpaper-switch.ps1 {image}"
+      # run_after:
+      #   - "pwsh.exe -NoProfile -ExecutionPolicy Bypass -File C:/Users/8eber/.config/yasb/scripts/wallpaper-switch.ps1 {image}"
     callbacks:
       on_left: "do_nothing"
       on_middle: "do_nothing"

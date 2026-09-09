@@ -2,19 +2,21 @@
 
 * {
 	font-size: 12px;
-	color: var(--on_surface);
+	/* color: var(--on_surface); */
+	color: palette(text);
 	font-weight: 600;
 	font-family: "JetBrainsMono NFP";
 }
 
 .yasb-bar {
-	border: 1px solid var(--primary_container);
-	background-color: var(--surface);
+	border: 1px solid palette(highlight);
+	background-color: palette(base);
 }
 
 /* Global styles for ToolTip */
 .tooltip {
-	background-color: var(--surface);
+	/* background-color: palette(base); */
+	background-color: palette(tool-tip-base);
 	border-radius: 4px;
 	padding: 5px 12px;
 	font-size: 12px;
@@ -26,7 +28,9 @@
 /* Global context menu style */
 .context-menu,
 .context-menu .menu-checkbox {
-	background-color: var(--surface);
+	/* background-color: var(--surface); */
+	/* background-color: palette(base); */
+	background-color: palette(tool-tip-base);
 	border: none;
 	padding: 4px 0px;
 	font-family: 'Segoe UI';
@@ -50,17 +54,21 @@
 
 .context-menu::item:selected,
 .context-menu .menu-checkbox:hover {
-	background-color: var(--on_primary);
+	/* background-color: var(--on_primary); */
+	background-color: palette(highlight);
+	color: palette(highlighted-text);
 }
 
 .context-menu::separator {
 	height: 1px;
-	background-color: var(--outline);
+	/* background-color: palette(shadow); */
+	background-color: palette(midlight);
 	margin: 4px 8px;
 }
 
 .context-menu::item:disabled {
-	color: var(--surface_variant);
+	/* color: var(--surface_variant); */
+	/* color: */
 	background-color: transparent;
 }
 
@@ -78,7 +86,8 @@
 }
 
 .context-menu .menu-checkbox .checkbox:unchecked {
-	color: var(--surface_variant);
+	/* color: var(--surface_variant); */
+	color: palette(lowlight);
 }
 
 .context-menu .menu-checkbox .checkbox::indicator {
@@ -93,7 +102,8 @@
 }
 
 .context-menu .menu-checkbox .checkbox::indicator:checked {
-	background: var(--primary);
+	/* background: palette(highlight); */
+	background: palette(highlight);
 	border-radius: 2px;
 }
 
@@ -118,11 +128,14 @@
 .microphone-widget .label.muted,
 .volume-widget .icon.muted,
 .volume-widget .label.muted {
-	color: var(--surface_variant);
+	/* color: var(--surface_variant); */
+	color: palette(lowlight);
 }
 
 .audio_grouper .container {
-	background-color: var(--primary_container);
+	/* background-color: var(--primary_container); */
+	background-color: palette(highlight);
+	color: palette(highlighted-text);
 	margin: 4px 0;
 	border-radius: 8px;
 }
@@ -130,38 +143,45 @@
 .audio_grouper .container .icon,
 .audio_grouper .container .label,
 .audio_grouper .container .btn {
-	color: var(--on_primary_container);
+	/* color: var(--on_primary_container); */
 }
 
 .audio_grouper .container:hover {
-	background-color: var(--inverse_primary);
+	/* background-color: var(--inverse_primary); */
+	background-color: palette(light);
 }
 
 .audio_grouper .container:hover .icon:hover,
 .audio_grouper .container .label:hover,
 .audio_grouper .container .btn:hover {
-	color: var(--primary);
+	/* color: palette(highlight); */
 }
 
 .microphone-menu,
 .audio-menu {
-	background-color: var(--surface);
+	/* background-color: var(--surface); */
+	background-color: palette(tool-tip-base);
 }
 
 .microphone-menu .microphone-container .device.selected,
 .audio-menu .audio-container .device.selected {
-	background-color: var(--primary_container);
-	color: var(--on_primary_container);
+	/* background-color: var(--primary_container); */
+	/* color: var(--on_primary_container); */
+	background-color: palette(highlight);
+	color: palette(highlighted-text);
 }
 
 .microphone-menu .microphone-container .device:hover,
 .audio-menu .audio-container .device:hover {
-	background-color: var(--primary_fixed);
-	color: var(--on_primary_fixed);
+	background-color: palette(light);
+	/* background-color: var(--primary_fixed); */
+	/* color: var(--on_primary_fixed); */
 }
 
 .notification-widget {
-	background: var(--primary_container);
+	/* background: var(--primary_container); */
+	background-color: palette(highlight);
+	color: palette(highlighted-text);
 	border-radius: 8px;
 	padding: 4px;
 	margin: 4px 0;
@@ -169,12 +189,14 @@
 
 .notification-widget .icon,
 .notification-widget .label {
-	color: var(--on_primary_container);
+	/* color: var(--on_primary_container); */
 	font-size: 12px;
 }
 
 .clock-widget {
-	background-color: var(--primary_container);
+	/* background-color: var(--primary_container); */
+	background-color: palette(highlight);
+	color: palette(highlighted-text);
 	border-radius: 8px;
 	padding: 4px;
 	margin: 4px 0;
@@ -182,27 +204,31 @@
 
 .clock-widget .label,
 .clock-widget .icon {
-	color: var(--on_primary_container);
+	color: palette(highlighted-text);
+	/* color: var(--on_primary_container); */
 }
 
 .clock-widget:hover {
-	background-color: var(--inverse_primary);
+	/* background-color: var(--inverse_primary); */
+	background-color: palette(light);
+	color: palette(dark);
 }
 
 .clock-widget .label:hover,
 .clock-widget .icon:hover {
-	color: var(--primary);
+	color: palette(dark);
+	/* color: palette(highlight); */
 }
 
 .clock-popup.calendar {
-	background-color: var(--surface);
+	background-color: palette(tool-tip-base);
 	border-radius: 8px;
-	border: 1px solid var(--outline);
+	border: 1px solid palette(shadow);
 }
 
 .clock-popup.calendar .calendar-table,
 .clock-popup.calendar .calendar-table::item {
-	background-color: var(--surface);
+	background-color: palette(tool-tip-base);
 	margin: 0;
 	padding: 0;
 	border: none;
@@ -210,8 +236,10 @@
 }
 
 .clock-popup.calendar .calendar-table::item:selected {
-	color: var(--on_primary);
-	background-color: var(--primary);
+	/* color: var(--on_primary); */
+	/* background-color: palette(highlight); color: palette(highlighted-text); */
+	background-color: palette(highlight);
+	color: palette(highlighted-text);
 	border-radius: 8px;
 }
 
@@ -269,43 +297,51 @@
 .glazewm-workspaces .ws-btn.active_populated,
 .glazewm-workspaces .ws-btn.active_empty,
 .glazewm-workspaces .ws-btn.empty {
-	background-color: var(--surface);
+	background-color: palette(base);
 }
 
 .glazewm-workspaces .ws-btn.focused_populated,
 .glazewm-workspaces .ws-btn.focused_empty {
-	background-color: var(--primary_container);
-	color: var(--on_primary_container);
+	/* background-color: var(--primary_container); */
+	/* color: var(--on_primary_container); */
+	background-color: palette(highlight);
+	color: palette(highlighted-text);
 }
 
 
 .glazewm-workspaces .ws-btn:hover,
 .glazewm-workspaces .ws-btn .label:hover {
-	background-color: var(--inverse_primary);
-	color: var(--primary);
+	/* background-color: var(--inverse_primary); */
+	/* color: palette(highlight); */
+	background-color: palette(light);
+	color: palette(dark);
 }
 
 .glazewm-workspaces .ws-btn.focused_populated .label,
 .glazewm-workspaces .ws-btn.focused_empty .label {
-	color: var(--on_primary_container);
+	/* color: var(--on_primary_container); */
 }
 
 .systray .unpinned-visibility-btn {
 	border-radius: 8px;
 	height: 22px;
 	width: 22px;
-	color: var(--on_primary_container);
-	background-color: var(--primary_container);
+	/* color: var(--on_primary_container); */
+	/* background-color: var(--primary_container); */
+	background-color: palette(highlight);
+	color: palette(highlighted-text);
 }
 
 .systray .unpinned-visibility-btn:checked,
 .systray .unpinned-visibility-btn:hover {
-	background: var(--inverse_primary);
-	color: var(--primary);
+	/* background: var(--inverse_primary); */
+	/* color: palette(highlight); */
+	background-color: palette(light);
 }
 
 .systray-popup {
-	background-color: var(--surface);
+	/* background-color: var(--surface); */
+	background-color: palette(tool-tip-base);
 }
 
 .systray-popup .button {
@@ -323,33 +359,35 @@
 .taskbar-widget .app-container .app-title {
 	padding-left: 4px;
 	font-size: 12px;
-	color: var(--on_primary_container);
+	/* color: var(--on_primary_container); */
 }
 
 .taskbar-widget .app-container.foreground {
-	background-color: var(--primary_container);
+	/* background-color: var(--primary_container); */
+	background-color: palette(highlight);
+	color: palette(highlighted-text);
 }
 
 .taskbar-widget .app-container:hover {
-	background: var(--inverse_primary);
+	background: palette(light);
 }
 
 .taskbar-widget .app-container .app-title:hover {
-	color: var(--primary);
+	/* color: palette(highlight); */
 }
 
 .taskbar-widget .app-container.flashing {
-	background-color: var(--error);
+	background-color: palette(link);
 }
 
 .power-menu-widget .label {
 	font-size: 13px;
 	padding: 4px;
-	color: var(--error);
+	color: palette(highlight);
 }
 
 .power-menu-widget .label:hover {
-	color: var(--on_error_container);
+	/* color: var(--on_error_container); */
 }
 
 .power-menu-popup {
@@ -361,16 +399,19 @@
 	width: 180px;
 	height: 230px;
 	border-radius: 8px;
-	background-color: var(--primary_container);
+	/* background-color: var(--primary_container); */
+	background-color: palette(highlight);
+	color: palette(highlighted-text);
 	border: 4px solid transparent;
 	margin: 0px;
-	color: var(--on_primary_container);
+	/* color: var(--on_primary_container); */
 }
 
 .power-menu-popup .button.hover {
-	background-color: var(--inverse_primary);
-	color: var(--on_surface);
-	border: 4px solid var(--outline);
+	/* background-color: var(--inverse_primary); */
+	/* color: var(--on_surface); */
+	background-color: palette(light);
+	border: 4px solid palette(shadow);
 }
 
 .power-menu-popup .button .label {
@@ -412,7 +453,7 @@
 
 /* Quick Launch Popup - main window */
 .quick-launch-popup .container {
-	background-color: var(--surface);
+	background-color: palette(tool-tip-base);
 	opacity: 0.7;
 }
 
@@ -420,18 +461,18 @@
 .quick-launch-popup .search {
 	padding: 12px 16px;
 	background-color: transparent;
-	border-bottom: 1px solid var(--outline);
+	border-bottom: 1px solid palette(shadow);
 }
 
 /* Search loader line color */
 .quick-launch-popup .search .loader-line {
-	color: var(--secondary);
+	/* color: var(--secondary); */
 }
 
 .quick-launch-popup .search .search-icon {
 	font-family: "Segoe Fluent Icons";
 	font-size: 18px;
-	border-bottom: 1px solid var(--outline);
+	border-bottom: 1px solid palette(shadow);
 	padding-right: 8px;
 	min-width: 18px;
 }
@@ -453,7 +494,7 @@
 
 /* Search prefix styling (e.g., ">" for commands) */
 .quick-launch-popup .search .prefix {
-	background: var(--primary);
+	background: palette(highlight);
 	border-radius: 6px;
 	color: var(--on_primary);
 	padding: 8px;
@@ -478,7 +519,8 @@
 }
 
 .quick-launch-popup .results-list-view .description {
-	color: var(--secondary);
+	/* color: var(--secondary); */
+	color: palette(tool-tip-text);
 	font-size: 11px;
 	font-family: "Segoe UI";
 	font-weight: 600;
@@ -492,8 +534,10 @@
 
 .quick-launch-popup .results-list-view::item:hover,
 .quick-launch-popup .results-list-view::item:selected {
-	background-color: var(--primary_container);
-	color: var(--on_primary_container);
+	/* background-color: var(--primary_container); */
+	/* color: var(--on_primary_container); */
+	background-color: palette(highlight);
+	color: palette(highlighted-text);
 }
 
 /* Empty state when no results found */
@@ -505,26 +549,26 @@
 
 /* Preview Pane */
 .quick-launch-popup .preview {
-	background-color: var(--surface_variant);
-	border-left: 1px solid var(--outline);
+	background-color: palette(lowlight);
+	border-left: 1px solid palette(shadow);
 }
 
 .quick-launch-popup .preview .preview-text {
 	font-size: 13px;
 	padding: 8px 12px;
 	font-family: "Segoe UI";
-	background-color: var(--surface_variant);
+	background-color: palette(lowlight);
 	border: none;
 }
 
 .quick-launch-popup .preview .preview-image {
-	background-color: var(--surface_variant);
+	background-color: palette(lowlight);
 	padding: 8px 12px;
 }
 
 .quick-launch-popup .preview .preview-meta {
 	padding: 6px 12px;
-	border-top: 1px solid var(--outline);
+	border-top: 1px solid palette(shadow);
 	font-family: "Segoe UI";
 }
 
@@ -551,8 +595,8 @@
 }
 
 .quick-launch-popup .preview.edit .preview-line-edit {
-	background: var(--surface);
-	border: 1px solid var(--outline);
+	background: palette(base);
+	border: 1px solid palette(shadow);
 	border-radius: 4px;
 	font-size: 13px;
 	font-family: "Segoe UI";
@@ -561,7 +605,7 @@
 }
 
 .quick-launch-popup .preview.edit .preview-line-edit:focus {
-	border-color: var(--outline);
+	border-color: palette(shadow);
 }
 
 .quick-launch-popup .preview.edit .preview-text-edit {
@@ -576,7 +620,7 @@
 }
 
 .quick-launch-popup .preview.edit .preview-text-edit:focus {
-	border-color: var(--outline);
+	border-color: palette(shadow);
 }
 
 .quick-launch-popup .preview.edit .preview-actions {
@@ -584,8 +628,10 @@
 }
 
 .quick-launch-popup .preview.edit .preview-btn {
-	background: var(--secondary);
-	color: var(--on_secondary);
+	/* background: var(--secondary); */
+	/* color: var(--on_secondary); */
+	background-color: palette(button);
+	color: palette(button-text);
 	border: none;
 	border-radius: 4px;
 	font-size: 12px;
@@ -595,17 +641,17 @@
 }
 
 .quick-launch-popup .preview.edit .preview-btn:hover {
-	background: var(--inverse_primary);
+	/* background: var(--inverse_primary); */
+	background-color: palette(light);
 }
 
 .quick-launch-popup .preview.edit .preview-btn.save {
-	background: var(--primary);
-	color: var(--on_primary);
+	background: palette(highlight);
+	/* color: var(--on_primary); */
 }
 
 .quick-launch-popup .preview.edit .preview-btn.save:hover {
-	background: var(--inverse_primary);
-	color: var(--primary);
+	background: palette(light);
 }
 
 /* .wallpapers-gallery-window { */
@@ -620,5 +666,5 @@
 /**/
 /* .wallpapers-gallery-image:hover, */
 /* .wallpapers-gallery-image.focused { */
-/* 	border: 4px solid var(--outline); */
+/* 	border: 4px solid palette(shadow); */
 /* } */
