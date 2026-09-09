@@ -7,6 +7,7 @@ glazewm:
   start_command: "glazewm.exe start"
 bars:
   primary-bar:
+    # style: "adaptive"
     enabled: true
     screens: ["*"]
     class_name: "yasb-bar"
@@ -122,21 +123,17 @@ widgets:
       image_path: "C:\\users\\8eber\\OneDrive\\Pictures\\Wallpapers"
       engine:
         enabled: true
-        animation: "slide_top"
+        animation: "split"
       gallery:
         enabled: true
-        blur: true
-        image_width: 220
-        image_per_page: 6
+        image_width: 440
         orientation: "landscape"
-        show_buttons: false
-        image_spacing: 8
-        lazy_load: true
-        lazy_load_fadein: 400
+        type: "strip"
         image_corner_radius: 12
       keybindings:
         - keys: "ctrl+alt+shift+w"
           action: "toggle_gallery"
+          screen: "cursor"
       run_after:
         - "pwsh.exe -NoProfile -ExecutionPolicy Bypass -File C:/Users/8eber/.config/yasb/scripts/wallpaper-switch.ps1 {image}"
     callbacks:

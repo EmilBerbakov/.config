@@ -77,21 +77,22 @@ window_effects:
       enabled: false
       # Can be something like '95%' or '0.95' for slightly transparent windows.
       # '0' or '0%' is fully transparent (and, by consequence, unfocusable).
-      opacity: "95%"
+      # opacity: "95%"
 
   # Visual effects to apply to non-focused windows.
   other_windows:
     border:
       enabled: false
-      color: "#a1a1a1"
+      # color: "#a1a1a1"
     hide_title_bar:
       enabled: false
     corner_style:
       enabled: true
       style: "square"
     transparency:
+      #Need to wait for the ability to conditionally disable opacity settings for specific windows (i.e. I don't want to watch YT at 80% opacity)
       enabled: false
-      opacity: "100%"
+      opacity: "80%"
 
 window_behavior:
   # New windows are created in this state whenever possible.
@@ -115,6 +116,7 @@ window_behavior:
       maximized: false
 
       # Whether to show fullscreen windows as always on top.
+      #### WARNING - Setting this to true causes Marathon to crash. Presumably other games I have set to fullscreen through Glaze would also crash
       shown_on_top: false
 
 workspaces:
@@ -203,7 +205,7 @@ binding_modes:
         bindings: ["j"]
       # Press enter/escape to return to default keybindings.
       - commands: ["wm-disable-binding-mode --name resize"]
-        bindings: ["escape", "enter", "alt+r"]
+        bindings: ["escape", "enter", "alt+shift+r"]
   - name: "pause"
     keybindings:
       - commands: ["wm-disable-binding-mode --name pause"]
@@ -244,7 +246,7 @@ keybindings:
   # resizing via arrow keys or HJKL. The binding mode is defined above with
   # the name 'resize'.
   - commands: ["wm-enable-binding-mode --name resize"]
-    bindings: ["alt+r"]
+    bindings: ["alt+shift+r"]
 
   # Disables window management and all other keybindings until alt+shift+p
   # is pressed again.
