@@ -15,8 +15,8 @@
 
 /* Global styles for ToolTip */
 .tooltip {
-	/* background-color: palette(base); */
 	background-color: palette(tool-tip-base);
+	color: palette(tool-tip-text);
 	border-radius: 4px;
 	padding: 5px 12px;
 	font-size: 12px;

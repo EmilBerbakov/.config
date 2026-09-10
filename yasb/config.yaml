@@ -9,6 +9,7 @@ bars:
   primary-bar:
     # style: "adaptive"
     enabled: true
+    has_explicit_dark_theme: false
     screens: ["*"]
     class_name: "yasb-bar"
     alignment:
@@ -38,7 +39,7 @@ bars:
       center:
         - "glazewm_workspaces"
       right:
-        - "light_switch"
+        # - "light_switch"
         - "glazewm_grouper"
         # - "media"
         - "clock"
